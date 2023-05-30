@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Heroes from './pages/Heroes'
 import Music from './pages/music'
+import Land from './pages/land'
+import Cura from './pages/Cura'
+
 const arr = [
   {
     title: 'Alcemist',
@@ -61,15 +64,54 @@ const arrmusic =[
   ObsSen: 'Sentry'
 },
 {
-  title: 'Вард "Глупышка"',
-  ImageUrl: '/logo/music/varddva.jpg',
-  Price: '150',
-  Range:'900',
-  Gem:'blue',
-  ObsSen: 'Observer'
-}
+  title: 'Вард "Саурон"',
+  ImageUrl: '/logo/music/vardsentr.jpg',
+  Price: '400',
+  Range:'1200',
+  Gem:'black',
+  ObsSen: 'Sentry'
+},
 ];
-
+const arrLand =[
+  {
+    title: 'Ландшафт "Осенний"',
+    ImageUrl: '/logo/Landshaft/landsh1.jpg',
+    Price: '450',
+    Style: 'Autumn',
+    Description: 'Прекрасный ладншафт'
+  },
+  {
+    title: 'Ландшафт "Морской"',
+    ImageUrl: '/logo/Landshaft/landreef.jpg',
+    Price: '5000',
+    Style: 'UnderWater',
+    Description: 'Супер, мне понравилось,класс'
+  },
+  {
+    title: 'Ландшафт "Песочный"',
+    ImageUrl: '/logo/Landshaft/landsand.jpg',
+    Price: '1500',
+    Style: 'Sand King',
+    Description: 'просто супер, даже добавить нечего'
+  },
+  {
+    title: 'Ландшафт "Тропический"',
+    ImageUrl: '/logo/Landshaft/landtrop.jpg',
+    Price: '1200',
+    Style: 'Snake edition',
+    Description: 'оставляет готическое послевкусие'
+  },
+]
+const arrCura =[
+  {
+    title: 'курьер"',
+    ImageUrl: '/logo/music/varddva.jpg',
+    Price: '150',
+    Speed: '450',
+    Rarity:'rare',
+    Description:'ходовой такой курьер',
+  },
+]
 function App() {
   return (
     <div className="Wrapper clear"> 
@@ -110,10 +152,13 @@ function App() {
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center'>
-        {arr.map((obj)=>(
-          <Heroes
+        {arrLand.map((obj)=>(
+          <Land
           title={obj.title}
           ImageUrl={obj.ImageUrl}
+          Price={obj.Price}
+          Style={obj.Style}
+          Description={obj.Description}
           />
         ))}
       </div>
@@ -123,10 +168,11 @@ function App() {
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center'>
-        {arr.map((obj)=>(
-          <Heroes
+        {arrCura.map((obj)=>(
+          <Cura
           title={obj.title}
           ImageUrl={obj.ImageUrl}
+
           />
         ))}
       </div>
