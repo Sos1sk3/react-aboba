@@ -4,14 +4,14 @@ import Search from '../components/Search';
 import { Link } from 'react-router-dom';
 function Home(){
     return(
-        <div className="content p-40">
-        <div className="d-flex align-center mb-40 justify-between">
+        <div className="content p-40 ">
+        <div className="d-flex align-center mb-40 justify-between ">
           
         <h1><a href = "https://www.youtube.com/watch?v=1RNft8NLFYo" target = "_blanc" >Пудж На Диване <p>Интернет-магазин шмоток по доте</p> </a></h1>
         <Search />
         </div>
          
-          <div className="vibor_pokupki d-block justify-between">
+          <div className="vibor_pokupki d-block justify-between ">
 
           <h1>Покупка предметов на героев</h1>
             <div className="buhanka">

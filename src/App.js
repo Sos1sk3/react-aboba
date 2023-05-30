@@ -29,6 +29,16 @@ const arr = [
     ImageUrl: '/logo/hedota/image16.png'
 
   },
+  {
+    title: 'earth spirit',
+    ImageUrl: '/logo/hedota/image16.png'
+
+  },
+  {
+    title: 'earth spirit',
+    ImageUrl: '/logo/hedota/image16.png'
+
+  },
 ];
 const arrmusic =[
 {
@@ -71,6 +81,7 @@ const arrmusic =[
   Gem:'black',
   ObsSen: 'Sentry'
 },
+
 ];
 const arrLand =[
   {
@@ -104,12 +115,49 @@ const arrLand =[
 ]
 const arrCura =[
   {
-    title: 'курьер"',
-    ImageUrl: '/logo/music/varddva.jpg',
-    Price: '150',
+    title: 'курьер "Золотой мальчик"',
+    ImageUrl: '/logo/Courier/funky.jpg',
+    Price: '50',
     Speed: '450',
     Rarity:'rare',
     Description:'ходовой такой курьер',
+    Fly: 'отсутствует'
+  },
+  {
+    title: 'курьер "Китобой"',
+    ImageUrl: '/logo/Courier/golden.jpg',
+    Price: '50',
+    Speed: '450',
+    Rarity:'rare',
+    Description:'прикольный язь',
+    Fly: 'отсутствует'
+  },
+  {
+    title: 'курьер "Бибизьяна"',
+    ImageUrl: '/logo/Courier/monkey.jpg',
+    Price: '50',
+    Speed: '450',
+    Rarity:'rare',
+    Description:'Умеет лазать по деревьям',
+    Fly: 'присутствует'
+  },
+  {
+    title: 'курьер "Мамонтенок"',
+    ImageUrl: '/logo/Courier/od.jpg',
+    Price: '50',
+    Speed: '450',
+    Rarity:'rare',
+    Description:'ходовой такой курьер',
+    Fly: 'присутствует'
+  },
+  {
+    title: 'курьер "Дед мороз"',
+    ImageUrl: '/logo/Courier/pudd.jpg',
+    Price: '50',
+    Speed: '450',
+    Rarity:'rare',
+    Description:'Он воняет.',
+    Fly: 'Yes'
   },
 ]
 function App() {
@@ -120,7 +168,7 @@ function App() {
       <Route path ="/heroes">
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
-      <div className='d-flex align-center'>
+      <div className='d-flex align-center flex-wrap '>
         {arr.map((obj)=>(
           <Heroes
           title={obj.title}
@@ -134,7 +182,7 @@ function App() {
       <Route path ="/music">
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы найдёте </h1>
-      <div className='dispay_pi d-flex align-center '>
+      <div className='dispay_pi d-flex align-center flex-wrap '>
         {arrmusic.map((obj)=>(
           <Music
           title={obj.title}
@@ -167,12 +215,16 @@ function App() {
       <Route path ="/cura">
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
-      <div className='d-flex align-center'>
+      <div className='d-flex align-center flex-wrap'>
         {arrCura.map((obj)=>(
           <Cura
           title={obj.title}
           ImageUrl={obj.ImageUrl}
-
+          Price={obj.Price}
+          Speed ={obj.Speed}
+          Rarity={obj.Rarity}
+          Description={obj.Description}
+          Fly={obj.Fly}
           />
         ))}
       </div>
