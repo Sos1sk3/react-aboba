@@ -1,0 +1,123 @@
+public class WardInventory
+{
+    public int Id { get; set; }
+
+    public int AccountId { get; set; }
+    public Account? Account { get; set; }
+
+    public int WardId { get; set; }
+    public Ward? Ward { get; set; }
+    public int CountWard { get; set; }
+
+}
+
+public class LandInventory
+{
+    public int Id { get; set; }
+
+    public int AccountId { get; set; }
+    public Account? Account { get; set; }
+
+    public int LandId { get; set; }
+    public Land? Land { get; set; }
+    public int CountLand { get; set; }
+}
+
+public class CourierInventory
+{
+    public int Id { get; set; }
+
+    public int AccountId { get; set; }
+    public Account? Account { get; set; }
+
+    public int CourierId { get; set; }
+    public Courier? Courier { get; set; }
+    public int CountCourier { get; set; }
+
+}
+
+public class ItemInventory
+{
+    public int Id { get; set; }
+
+    public int AccountId { get; set; }
+    public Account? Account { get; set; }
+
+    public int ItemOnHeroId { get; set; }
+    public ItemOnHero? ItemOnHero { get; set; }
+    public int CountItem { get; set; }
+
+}
+
+public class ItemOnHero
+{
+    public int Id { get; set; }
+    public int Price { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Rarity { get; set; }
+    public string? Image { get; set; }
+
+    public int HeroId { get; set; }
+    public Hero? Hero { get; set; }
+}
+
+public class Ward
+{
+    public int Id { get; set; }
+    public int Price { get; set; }
+    public int RadiusOfVision { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Status { get; set; }
+    public string? Samocvet { get; set; }
+    public string? Image { get; set; }
+
+}
+
+public class Land
+{
+    public int Id { get; set; }
+    public int Price { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Style { get; set; }
+    public string? Image { get; set; }
+
+}
+
+public class Hero
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Attribute { get; set; }
+    public string? Image { get; set; }
+
+    public List<ItemOnHero> ItemOnHeroes { get; set; } = new();
+
+}
+
+public class Courier
+{
+    public int Id { get; set; }
+    public int Price { get; set; }
+    public int Movespeed { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public string? Rarity { get; set; }
+    public string? ImageWalk { get; set; }
+    public string? ImageFly { get; set; }
+
+}
+
+public class Account
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+    public string? Tradeoffer { get; set; }
+
+}
+
