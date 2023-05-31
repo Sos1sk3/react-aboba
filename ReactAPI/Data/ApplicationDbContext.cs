@@ -3,14 +3,14 @@ using ReactAPI.Data.Entities;
 
 namespace ReactAPI.Data;
 
-public class ApplicationContext : DbContext
+public class ApplicationDbContext : DbContext
 {
     /*public DbSet<Account> Account { get; set; } = null!;
     public DbSet<Hero> Hero { get; set; } = null!;
     public DbSet<Courier> Courier { get; set; } = null!;
     */public DbSet<Ward> Ward { get; set; } = null!;
-    /*public DbSet<Land> Land { get; set; } = null!;
-    public DbSet<ItemOnHero> ItemOnHero { get; set; } = null!;
+    public DbSet<Land> Land { get; set; } = null!;
+    /*public DbSet<ItemOnHero> ItemOnHero { get; set; } = null!;
     public DbSet<ItemInventory> ItemInventory { get; set; } = null!;
     public DbSet<CourierInventory> CourierInventory { get; set; } = null!;
     public DbSet<WardInventory> WardInventory { get; set; } = null!;
