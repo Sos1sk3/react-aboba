@@ -44,42 +44,47 @@ const arrmusic =[
 {
   title: 'Вард "Глупышка"',
   ImageUrl: '/logo/music/varddva.jpg',
-  Price: '150',
-  Range:'900',
+  Price: 150,
+  Range: 900,
   Gem:'blue',
-  ObsSen: 'Observer'
+  ObsSen: 'Observer',
+
 },
 {
   title: 'Вард "РубикКон"',
   ImageUrl: '/logo/music/vardodin.jpg',
-  Price: '200',
-  Range:'1000',
+  Price: 200,
+  Range:1000,
   Gem:'Red',
-  ObsSen: 'Observer'
+  ObsSen: 'Observer',
+ 
 },
 {
   title: 'Вард "Плющ"',
   ImageUrl: '/logo/music/vardpoizon.jpg',
-  Price: '150',
-  Range:'600',
+  Price: 150,
+  Range:600,
   Gem:'Cold Ice',
-  ObsSen: 'Sentry'
+  ObsSen: 'Sentry',
+ 
 },
 {
   title: 'Вард "Саурон"',
   ImageUrl: '/logo/music/vardsentr.jpg',
-  Price: '400',
-  Range:'1200',
+  Price: 400,
+  Range:1200,
   Gem:'black',
-  ObsSen: 'Sentry'
+  ObsSen: 'Sentry',
+ 
 },
 {
   title: 'Вард "Саурон"',
   ImageUrl: '/logo/music/vardsentr.jpg',
-  Price: '400',
-  Range:'1200',
+  Price: 400,
+  Range: 1200,
   Gem:'black',
-  ObsSen: 'Sentry'
+  ObsSen: 'Sentry',
+
 },
 
 ];
@@ -87,28 +92,28 @@ const arrLand =[
   {
     title: 'Ландшафт "Осенний"',
     ImageUrl: '/logo/Landshaft/landsh1.jpg',
-    Price: '450',
+    Price: 450,
     Style: 'Autumn',
     Description: 'Прекрасный ладншафт'
   },
   {
     title: 'Ландшафт "Морской"',
     ImageUrl: '/logo/Landshaft/landreef.jpg',
-    Price: '5000',
+    Price: 5000,
     Style: 'UnderWater',
     Description: 'Супер, мне понравилось,класс'
   },
   {
     title: 'Ландшафт "Песочный"',
     ImageUrl: '/logo/Landshaft/landsand.jpg',
-    Price: '1500',
+    Price: 1500,
     Style: 'Sand King',
     Description: 'просто супер, даже добавить нечего'
   },
   {
     title: 'Ландшафт "Тропический"',
     ImageUrl: '/logo/Landshaft/landtrop.jpg',
-    Price: '1200',
+    Price: 1200,
     Style: 'Snake edition',
     Description: 'оставляет готическое послевкусие'
   },
@@ -117,8 +122,8 @@ const arrCura =[
   {
     title: 'курьер "Золотой мальчик"',
     ImageUrl: '/logo/Courier/funky.jpg',
-    Price: '50',
-    Speed: '450',
+    Price: 50,
+    Speed: 450,
     Rarity:'rare',
     Description:'ходовой такой курьер',
     Fly: 'отсутствует'
@@ -126,8 +131,8 @@ const arrCura =[
   {
     title: 'курьер "Китобой"',
     ImageUrl: '/logo/Courier/golden.jpg',
-    Price: '50',
-    Speed: '450',
+    Price: 50,
+    Speed: 450,
     Rarity:'rare',
     Description:'прикольный язь',
     Fly: 'отсутствует'
@@ -135,8 +140,8 @@ const arrCura =[
   {
     title: 'курьер "Бибизьяна"',
     ImageUrl: '/logo/Courier/monkey.jpg',
-    Price: '50',
-    Speed: '450',
+    Price: 50,
+    Speed: 450,
     Rarity:'rare',
     Description:'Умеет лазать по деревьям',
     Fly: 'присутствует'
@@ -144,8 +149,8 @@ const arrCura =[
   {
     title: 'курьер "Мамонтенок"',
     ImageUrl: '/logo/Courier/od.jpg',
-    Price: '50',
-    Speed: '450',
+    Price: 50,
+    Speed: 450,
     Rarity:'rare',
     Description:'ходовой такой курьер',
     Fly: 'присутствует'
@@ -153,8 +158,8 @@ const arrCura =[
   {
     title: 'курьер "Дед мороз"',
     ImageUrl: '/logo/Courier/pudd.jpg',
-    Price: '50',
-    Speed: '450',
+    Price: 50,
+    Speed: 450,
     Rarity:'rare',
     Description:'Он воняет.',
     Fly: 'Yes'
@@ -191,6 +196,7 @@ function App() {
           Range={obj.Range}
           Gem={obj.Gem}
           ObsSen={obj.ObsSen}
+          Add={obj.Add}
           />
         ))}
       </div>

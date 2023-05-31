@@ -1,4 +1,16 @@
+import React, { useState } from "react";
+
 function Cura(props){
+  function BuyButton() {
+    const [buttonText, setButtonText] = useState("Купить");
+
+    function handleClick() {
+      if (buttonText === "Добавлено") {
+        setButtonText("Купить");
+      } else {
+        setButtonText("Добавлено");
+      }
+    }
     return(
      
           <div className='cardM'>
@@ -9,12 +21,14 @@ function Cura(props){
                 <h5>Скорость: {props.Speed} </h5>
                 <h5>редкость: {props.Rarity}</h5>
                 <h5>Полет: {props.Fly}</h5>
-              <button className="buttonH">
-                <h1><center>купить</center></h1>
-              </button>
+                <button onClick={handleClick} className="buttonH">
+          {buttonText}
+        </button>
             
           </div>
   
     );
+  }
+  return <BuyButton />;
   }
   export default Cura;
