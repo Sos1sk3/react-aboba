@@ -36,8 +36,8 @@ function Cart() {
       <div className="card d-flex flex-wrap">
         {cartItems.map((item) => (
           <div key={item.id} className="cardM">
-            <img src={item.ImageUrl} alt={item.title} />
-            <h3>{item.title}</h3>
+            <img src={item.Image} alt={item.Name} />
+            <h3>{item.Name}</h3>
             <p>{item.Price} руб.</p>
             <button onClick={() => removeItem(item.id)}>Удалить</button>
           </div>

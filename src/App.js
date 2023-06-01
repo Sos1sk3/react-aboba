@@ -50,12 +50,12 @@ const arr = [
 /*const arrmusic =[
 {
   
-  title: 'Вард "Глупышка"',
-  ImageUrl: '/logo/music/varddva.jpg',
+  Name: 'Вард "Глупышка"',
+  Image: '/logo/music/varddva.jpg',
   Price: 150,
-  Range: 900,
-  Gem:'blue',
-  ObsSen: 'Observer',
+  RadiusOfVision: 900,
+  Samocvet:'blue',
+  Status: 'Observer',
 
 },
 {
@@ -255,12 +255,12 @@ function App() {
       <div className='dispay_pi d-flex align-center flex-wrap '>
         {itemsWard.map((obj)=>(
           <Ward
-          title={obj.title}
-          ImageUrl={obj.ImageUrl}
+          Name={obj.Name}
+          Image={obj.Image}
           Price={obj.Price}
-          Range={obj.Range}
-          Gem={obj.Gem}
-          ObsSen={obj.ObsSen}
+          RadiusOfVision={obj.RadiusOfVision}
+          Samocvet={obj.Samocvet}
+          Status={obj.Status}
           Add={obj.Add}
           //OnPlus={()=>console.log('нажали плюс')}
           />
