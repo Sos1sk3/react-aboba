@@ -4,7 +4,7 @@ body {
   font-family: Georgia,  system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #8d8bee;
+  background-color: rgb(200, 245, 222);
   //background-image: url(D:\wwwReact\react-aboba\public\logo\pic\1670734408_3-20.jpg);
   background-repeat: no-repeat;
   background-position: center center;
@@ -186,40 +186,47 @@ border-radius: 40px;
 }
 }
 .cardM{
+
   flex-wrap: wrap;
   margin-right: 95px;
   border: 3px solid #000000;
   padding: 10px;
-  width: 180px;
+  width: 223px;
   
   margin: 3%;
   border-radius: 20px;
-  background-color: #d6c4b4;
+  background-color: #99e7ba;
+  align-items: center;
   
   //margin-right: 9.5%;
-  box-shadow: 0px 10px 20px rgba(219, 179, 119, 0.945);
+  box-shadow: 0px 10px 20px rgba(12, 230, 66, 0.945);
   align-items: center;
   h5{
     margin-bottom: 10px;
     display:block;
   }
+  
   img{
     border-radius: 20px;
     box-sizing: border-box;
-    height: 100px;
-    width: 155px;
+    height: 110px;
+    width: 195px;
   }
+  
+  
 .buttonH{
+  justify-content: space-between;
   align-items: center;
   background: #ffffff;
-  border: 1px solid #e9cf7a;
+  border: 1px solid #81dd35;
   //box-sizing: border-box;
   border-radius: 10px;
   height: 32px;
-  width: 155px;
+  width: 32px;
   cursor: pointer;
   //margin-left: 5px;
   //margin-right: 20px;
+  margin-top: auto;
 
   h5{
     margin-bottom: 20px;
@@ -227,4 +234,124 @@ border-radius: 40px;
     text-align: center;
   }
 }
+}
+
+.User {
+  justify-content: center;
+  position: absolute;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0,0,0,0.01);
+  padding: 30px;
+  overflow: auto;
+  
+  }
+  
+  .User .items {
+  overflow: auto;
+  margin-bottom: 40px;
+  }
+  
+  .User h2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 30px;
+  }
+  
+  .User span {
+  display: block;
+  margin-top: 20px;
+  }
+  
+  .User b {
+  display: flex;
+  }
+  
+  .Login {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  background-color: rgb(200, 245, 222);
+  box-shadow: -10px 4px 24px rgba(0,0,0,0.01);
+  padding: 30px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h2
+  
+  {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 40px;
+  margin-bottom: 30px;
+  }
+  
+  }
+  
+  .Login input {
+  display: block;
+  width: 200px;
+  height: 35px;
+  margin-bottom: 5px;
+  }
+  
+  .logBtn {
+  background: #99f3ef;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 18px;
+  height: 40px;
+  width: 200px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  &:hover
+  
+  {
+  background: lighten (#9dd558, 5%);
+  }
+  
+  &:activate {
+  background: lighten (#afd10c, 5%);
+  }
+  
+  }
+  .ExitButton {
+  background: #f41a1a;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 18px;
+  margin-top: 300px;
+  height: 50px;
+  width: 300px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  &:activate
+  
+  {
+  background: lighten (#afd10c, 5%);
+  }
+  
+  }
+  
+  .ExitButton:hover {
+  background: lighten (#9dd558, 5%);
+  }
+  .overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    overflow: auto;
+    }
+.butad{
+  height: 32px;
+  width: 32px;
 }

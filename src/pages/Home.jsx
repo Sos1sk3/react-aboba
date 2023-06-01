@@ -8,7 +8,7 @@ function Home(){
         <div className="d-flex align-center mb-40 justify-between ">
           
         <h1><a href = "https://www.youtube.com/watch?v=1RNft8NLFYo" target = "_blanc" >Пудж На Диване <p>Интернет-магазин шмоток по доте</p> </a></h1>
-        <Search />
+        
         </div>
          
           <div className="vibor_pokupki d-block justify-between ">
@@ -31,7 +31,7 @@ function Home(){
           <h1>Покупка Вардов</h1>
           <div className="buhanka">
          
-          <Link to ="/music">
+          <Link to ="/ward">
             <img  src="/logo/music/vard1.jpg"  alt="sus" width={1000} height={300}/>
             </Link>
           </div>

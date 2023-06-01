@@ -1,4 +1,12 @@
+import React, { useState } from "react";
+
 function Cura(props){
+  const [isAdded, setIsAdded] = useState(false);
+
+  const onClickPlus = () => {
+    setIsAdded(!isAdded);
+  }
+
     return(
      
           <div className='cardM'>
@@ -9,12 +17,10 @@ function Cura(props){
                 <h5>Скорость: {props.Speed} </h5>
                 <h5>редкость: {props.Rarity}</h5>
                 <h5>Полет: {props.Fly}</h5>
-              <button className="buttonH">
-                <h1><center>купить</center></h1>
-              </button>
-            
+                <img className="butad" style={{ width: "20px", height: "20px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"} alt="Add to cart" />
           </div>
   
     );
   }
+  
   export default Cura;
