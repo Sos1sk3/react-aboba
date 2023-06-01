@@ -1,0 +1,7 @@
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.csproj.AssemblyReference.cache
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.AssemblyInfoInputs.cache
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.AssemblyInfo.cs
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.csproj.CoreCompileInputs.cache
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.MvcApplicationPartsAssemblyInfo.cs
+E:\Программирование\ProektOOP\react-aboba\ReactAPI\obj\Debug\net7.0\ReactAPI.MvcApplicationPartsAssemblyInfo.cache
