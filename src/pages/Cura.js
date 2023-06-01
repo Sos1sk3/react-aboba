@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 
 function Cura(props){
-  function BuyButton() {
-    const [buttonText, setButtonText] = useState("Купить");
+  const [isAdded, setIsAdded] = useState(false);
 
-    function handleClick() {
-      if (buttonText === "Добавлено") {
-        setButtonText("Купить");
-      } else {
-        setButtonText("Добавлено");
-      }
-    }
+  const onClickPlus = () => {
+    setIsAdded(!isAdded);
+  }
+
     return(
      
           <div className='cardM'>
@@ -21,14 +17,10 @@ function Cura(props){
                 <h5>Скорость: {props.Speed} </h5>
                 <h5>редкость: {props.Rarity}</h5>
                 <h5>Полет: {props.Fly}</h5>
-                <button onClick={handleClick} className="buttonH">
-          {buttonText}
-        </button>
-            
+                <img className="butad" style={{ width: "20px", height: "20px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"} alt="Add to cart" />
           </div>
   
     );
   }
-  return <BuyButton />;
-  }
+  
   export default Cura;

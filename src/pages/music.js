@@ -1,33 +1,35 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-function Music(props) {
-  function BuyButton() {
-    const [buttonText, setButtonText] = useState("Купить");
+function Ward(props) {
+  
+  const[isAdded, setIsAdded] = React.useState(false);
 
-    function handleClick() {
-      if (buttonText === "Добавлено") {
-        setButtonText("Купить");
-      } else {
-        setButtonText("Добавлено");
-      }
+  const onClickPlus =() =>{
+    setIsAdded(!isAdded);
+    if(isAdded===false ){
+      axios.post('https://647881ab362560649a2debe7.mockapi.io/cart',props);
     }
+    
+    
+  }
     return (
       <div className="cardM">
         <img src={props.ImageUrl} alt="sus"></img>
-        <h4>
+        <h5>
           <center>{props.title}</center>
-        </h4>
+        </h5>
         <h5>Цена: {props.Price} руб</h5>
         <h5>Дальность: {props.Range} к/м </h5>
         <h5>Самоцвет: {props.Gem} </h5>
         <h5>Тип: {props.ObsSen} </h5>
-        <button onClick={handleClick} className="buttonH">
-          {buttonText}
-        </button>
+
+        <img className="butad" style={{ width: "20px", height: "20px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"} alt="Add to cart" />
       </div>
+      
     );
-  }
-  return <BuyButton />;
+  
+
 }
 
-export default Music;
+export default Ward;
