@@ -42,6 +42,12 @@ function Header(){
             
             </Link>
           </li>
+          <li>
+            <Link to="/favorite" classname="Link">
+            <img src="/logo/Union.svg" alt="э"/>
+              <span> Любимые </span>
+            </Link>
+          </li>
         </ul>
         
       </header>

@@ -12,7 +12,7 @@ import Autorization from './pages/Autorization';
 import User from './pages/User';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cart from './pages/Cart';
-
+import Favorite from './pages/Favorite';
 
 
 const arr = [
@@ -187,32 +187,15 @@ function App() {
 
 
     }, []);
-    const onAddToCartWard = (obj) =>{
-      axios.post('https://647881ab362560649a2debe7.mockapi.io/cart',obj);
-      setCartItemsWard((prev)=>[...prev,obj]);
-    }
-    const onRemoveWard = (id) => {
-      axios.delete(`https://647881ab362560649a2debe7.mockapi.io/cart/${id}`);
-      setCartItemsWard((prev)=>prev.filter(obj => obj.id !== id));
-    }
-    /*const onAddToCart = async (obj) => {
-      try {
-          if (cartItems.find((item) => Number(item.id) === Number(obj.id))) {
-              axios.delete(`https://localhost:7045/UserCart/${obj.id}`);
-              setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
-          }
-          else {
-              const { data } = await axios.post('https://localhost:7045/UserCart', obj);
-              setCartItems((prev) => [...prev, data]);
-          }
-
-      } catch (error) {
-          alert('Do not add to cart');
-
-      }
-    };
-    */
-
+    // const onAddToCartWard = (obj) =>{
+    //   axios.post('https://647881ab362560649a2debe7.mockapi.io/cart',obj);
+    //   setCartItemsWard((prev)=>[...prev,obj]);
+    // }
+    // const onRemoveWard = (id) => {
+    //   axios.delete(`https://647881ab362560649a2debe7.mockapi.io/cart/${id}`);
+    //   setCartItemsWard((prev)=>prev.filter(obj => obj.id !== id));
+    // }
+ 
 
 
 
@@ -221,13 +204,20 @@ function App() {
     const [itemsLand, setItemsLand] = React.useState([]);
     React.useEffect(() => {
         
-        axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => {
+        axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => { //сюда ссылка на ландшафты из базы данных
             setItemsLand(res.data);
         });
 
     }, []);
 
     const [itemsCura, setItemsCura] = React.useState([]);
+    React.useEffect(() => {
+        
+      axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => { //сюда ссылка на курьеров из базы данных
+          setItemsCura(res.data);
+      });
+
+  }, []);
 
   return (
     <div className="Wrapper clear"> 
@@ -276,10 +266,10 @@ function App() {
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center flex-wrap'>
-        {arrLand.map((obj)=>(
+        {itemsLand.map((obj)=>(
           <Land
-          title={obj.title}
-          ImageUrl={obj.ImageUrl}
+          Name={obj.Name}
+          Image={obj.Image}
           Price={obj.Price}
           Style={obj.Style}
           Description={obj.Description}
@@ -292,10 +282,10 @@ function App() {
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center flex-wrap'>
-        {arrCura.map((obj)=>(
+        {itemsCura.map((obj)=>(
           <Cura
-          title={obj.title}
-          ImageUrl={obj.ImageUrl}
+          Name={obj.Name}
+          Image={obj.Image}
           Price={obj.Price}
           Speed ={obj.Speed}
           Rarity={obj.Rarity}
@@ -310,7 +300,7 @@ function App() {
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center flex-wrap'>
-          <Cart/>
+      <Cart/>
         </div>
 
         </div>
@@ -330,9 +320,16 @@ function App() {
         <User/>
         </div>
       </Route>
-
+      <Route path = "/favorite">
+      <div className='content p-40'>
+      <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
+      <div className='d-flex align-center flex-wrap'>
+          <Favorite/>
+        </div>
+        </div>
+      </Route>
     </div>
-
+      
   );
 }
 

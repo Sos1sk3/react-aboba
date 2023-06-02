@@ -23,7 +23,7 @@ return <div>First log in...</div>;
 }
 
 const Exit = async () => {
-for (let i = 0; i < cartItems.length; i++) {
+/*for (let i = 0; i < cartItems.length; i++) {
 const item = cartItems[i];
 await axios.delete('https://localhost:7045/UserCart/' + item.id);
 }
@@ -35,6 +35,7 @@ for (let i = 0; i < orders.length; i++) {
 const item = orders[i];
 await axios.delete('https://localhost:7045/UserOrders/' + item.id);
 }
+*/
 localStorage.removeItem('userId'); // Удаляем id пользователя из LocalStorage
 localStorage.removeItem('userLogin'); // Удаляем логин пользователя из LocalStorage
 window.location.href = '/login';

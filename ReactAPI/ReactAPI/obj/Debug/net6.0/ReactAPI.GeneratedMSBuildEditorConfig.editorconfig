@@ -9,9 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ReactAPI
 build_property.RootNamespace = ReactAPI
+<<<<<<< HEAD
 build_property.ProjectDir = E:\Программирование\ProektOOP(Сломан гит)\react-aboba\ReactAPI\ReactAPI\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = E:\Программирование\ProektOOP(Сломан гит)\react-aboba\ReactAPI\ReactAPI
+=======
+build_property.ProjectDir = d:\wwwReact\react-aboba\ReactAPI\ReactAPI\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = d:\wwwReact\react-aboba\ReactAPI\ReactAPI
+>>>>>>> 1aa14f69f367792fe95b6e3221a87d69a6714734
 build_property._RazorSourceGeneratorDebug = 

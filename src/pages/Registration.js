@@ -4,7 +4,7 @@ import axios from 'axios';
 function Registration() {
 const [email, setEmail] = React.useState('');
 const [password, setPassword] = React.useState('');
-const [phoneNum, setPhoneNum] = React.useState('');
+const [Steam, setSteam] = React.useState('');
 const [name, setName] = React.useState('');
 const [login, setLogin] = React.useState('');
 const [countryCodeId, setCountryCodeId] = React.useState(' ');
@@ -37,7 +37,7 @@ email,
 password,
 name,
 login,
-phoneNum,
+Steam,
 countryCodeId
 }).then((res) => {
 localStorage.setItem('token', res.data.token);
@@ -58,13 +58,13 @@ return (
 <div className="Login">
 <h2>Registration</h2>
 <div className="login">
-<input placeholder="Login..." value={login} onChange={(e) => setLogin(e.target.value)} />
+<input placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)} />
 </div>
 <div className="login">
-<input placeholder="Password..." value={password} onChange={(e) => setPassword(e.target.value)} />
+<input placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
 </div>
 <div className="login">
-<input placeholder="Email..." value={email} onChange={(e) => setEmail(e.target.value)} />
+<input placeholder="Почта" value={email} onChange={(e) => setEmail(e.target.value)} />
 </div>
 <div className="login1" >
 <select value={countryCodeId} onChange={handleOptionChange}>
@@ -77,10 +77,10 @@ return (
 
 </div>
 <div className="login">
-<input placeholder="Phone Number..." value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)} />
+<input placeholder="Ссылка на профиль Steam " value={Steam} onChange={(e) => setSteam(e.target.value)} />
 </div>
 <div className="login">
-<input placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)} />
+<input placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)} />
 </div>
 
 
