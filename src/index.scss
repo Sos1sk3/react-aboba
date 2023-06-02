@@ -354,4 +354,22 @@ border-radius: 40px;
 .butad{
   height: 32px;
   width: 32px;
+  justify-content: space-between;
+}
+.buttonBuy{
+  width: 250px;
+  height: 50px;
+  background-color:#99f3ef;
+  border-radius: 20px;
+  margin: 0 auto;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 18px;
+}
+.buttonDelete{
+  cursor: pointer;
+  height: 30px;
+  width: 90px;
+  background-color:#99f3ef;
+  border-radius: 20px;
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function Cart() {
+function Favorite() {
   const [cartItemsWard, setCartItemsWard] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://647881ab362560649a2debe7.mockapi.io/cart")
+      .get("https://647a00cea455e257fa642dbb.mockapi.io/pepe")
       .then((response) => {
         setCartItemsWard(response.data);
       })
@@ -17,7 +17,7 @@ function Cart() {
 
   function removeItem(id) {
     axios
-      .delete(`https://647881ab362560649a2debe7.mockapi.io/cart/${id}`)
+      .delete(`https://647a00cea455e257fa642dbb.mockapi.io/pepe/${id}`)
       .then(() => {
         const newCartItems = cartItemsWard.filter((item) => item.id !== id);
         setCartItemsWard(newCartItems);
@@ -31,7 +31,7 @@ function Cart() {
 
   return (
     <div className="content p-40">
-      <h1 className="mb-40">Моя корзина</h1>
+      <h1 className="mb-40">Мои Любимые</h1>
 
       <div className="card d-flex flex-wrap">
         {cartItemsWard.map((item) => (
@@ -44,16 +44,13 @@ function Cart() {
         ))}
       </div>
 
-      
-      <div className="total-price" >
+      <div className="total-price">
         Итого: {totalPrice} руб.
       </div>
         
-      <button className="buttonBuy">Оформить заказ
-      
-      </button>
+      <button className="buttonBuy">Оформить заказ </button>
     </div>
   );
 }
 
-export default Cart;
+export default Favorite;
