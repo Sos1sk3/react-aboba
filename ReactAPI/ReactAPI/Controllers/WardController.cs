@@ -56,7 +56,7 @@ public class WardController : ControllerBase
     }
 
     [HttpPost]
-    /*public async Task<IActionResult> CreateWard(Ward ward)
+    public async Task<IActionResult> CreateWard(Ward ward)
     {
         if (!ModelState.IsValid)
         {
@@ -113,7 +113,7 @@ public class WardController : ControllerBase
 
         return NoContent();
     }
-*/
+
     private bool WardExists(int id)
     {
         return _context.Ward.Any(w => w.Id == id);

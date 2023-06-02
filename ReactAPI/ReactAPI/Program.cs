@@ -11,10 +11,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+options.AddPolicy("ReactAPI",
+policy => policy.WithOrigins("http://localhost:3000")
+.AllowAnyHeader()
+.AllowAnyMethod()
+.AllowAnyOrigin()
+);
+});
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("PudgeOnSofaConnection"));
 });
+
+
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -58,4 +69,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseCors("ReactAPI");
 app.Run();

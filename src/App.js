@@ -181,7 +181,7 @@ function App() {
     
   
   React.useEffect(() => {
-        axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => {
+        axios.get('https://localhost:7241/api/ward').then((res) => {
             setItemsWard(res.data);
         });
 
@@ -255,12 +255,12 @@ function App() {
       <div className='dispay_pi d-flex align-center flex-wrap '>
         {itemsWard.map((obj)=>(
           <Ward
-          Name={obj.Name}
-          Image={obj.Image}
-          Price={obj.Price}
-          RadiusOfVision={obj.RadiusOfVision}
-          Samocvet={obj.Samocvet}
-          Status={obj.Status}
+          name={obj.name}
+          image={obj.image}
+          price={obj.price}
+          radiusOfVision={obj.radiusOfVision}
+          samocvet={obj.samocvet}
+          status={obj.status}
           Add={obj.Add}
           //OnPlus={()=>console.log('нажали плюс')}
           />

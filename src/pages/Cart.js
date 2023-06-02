@@ -6,7 +6,7 @@ function Cart() {
 
   useEffect(() => {
     axios
-      .get("https://647881ab362560649a2debe7.mockapi.io/cart")
+      .get("https://localhost:7241/api/ward")
       .then((response) => {
         setCartItems(response.data);
       })
