@@ -11,8 +11,7 @@ function Land(props) {
       const userId = localStorage.getItem("userId");
       const landId = props.Id;
 
-      axios
-        .post("https://localhost:7241/api/LandInventory", {
+      axios.post("https://localhost:7241/api/LandInventory", {
           AccountId: userId,
           LandId: landId,
         })
@@ -20,12 +19,20 @@ function Land(props) {
     }
   };
 
-  //   const onClickFav =() =>{
-  //     setIsAddedF(!isAddedF);
-  //     if(isAddedF===false ){
-  //       axios.post('https://647a00cea455e257fa642dbb.mockapi.io/pepe',props);
-  //     }
-  // }
+  const onClickFav = () => {
+    setIsAddedF(!isAddedF);
+    if (isAddedF === false) {
+      const userId = localStorage.getItem("userId");
+      const landId = props.Id;
+  
+      axios.post("https://localhost:7241/api/LandLiked", {
+          AccountId: userId,
+          LandId: landId,
+        })
+    
+    }
+  };
+  
   return (
     <div className="cardM">
       <img src={props.Image} alt="sus" />
@@ -36,7 +43,7 @@ function Land(props) {
       <h5>Стиль: {props.Style}</h5>
       <h5>Описание: {props.Description}</h5>
       <img className="butad" style={{ width: "32px", height: "32px",margin:"5px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"} alt="Add to cart" />
-      {/* <img className="butad" style={{ width: "32px", height: "32px",margin:"5px" }} onClick={onClickFav} src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"} alt="Add to cart" /> */}
+      { <img className="butad" style={{ width: "32px", height: "32px",margin:"5px" }} onClick={onClickFav} src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"} alt="Add to cart" /> }
     </div>
   );
 }

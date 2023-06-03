@@ -15,10 +15,10 @@ public class ApplicationDbContext : DbContext
     public DbSet<CourierInventory> CourierInventory { get; set; } = null!;
     public DbSet<WardInventory> WardInventory { get; set; } = null!;
     public DbSet<LandInventory> LandInventory { get; set; } = null!;
-    public DbSet<ItemOnHeroLike> ItemOnHeroLike { get; set; } = null!;
-    public DbSet<CourierLike> CourierLike { get; set; } = null!;
-    public DbSet<WardLike> WardLike { get; set; } = null!;
-    public DbSet<LandLike> LandLike { get; set; } = null!;
+    public DbSet<ItemOnHeroLiked> ItemOnHeroLiked { get; set; } = null!;
+    public DbSet<CourierLiked> CourierLiked { get; set; } = null!;
+    public DbSet<WardLiked> WardLiked { get; set; } = null!;
+    public DbSet<LandLiked> LandLiked { get; set; } = null!;
 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

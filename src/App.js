@@ -13,6 +13,7 @@ import User from './pages/User';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cart from './pages/Cart';
 import Favorite from './pages/Favorite';
+import Oformlen from './pages/Oformlen';
 
 
 const arr = [
@@ -329,6 +330,11 @@ function App() {
         </div>
         </div>
       </Route>
+      <Route path="/Oformlen">
+        <div className='content p-40'>
+          <Oformlen/>
+          </div>
+        </Route>
     </div>
       
   );

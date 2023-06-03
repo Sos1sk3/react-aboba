@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ReactAPI.Data.Entities;
 
-public class WardLike
+public class LandLiked
 {
     public int Id { get; set; }
 
     public int AccountId { get; set; }
 
-    public int WardId { get; set; }
+    public int LandId { get; set; }
 
 
 }

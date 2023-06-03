@@ -16,9 +16,8 @@ function Header(){
         </a>
         <ul className="d-flex">
           <li className="mr-30">
-
-            <img src="/logo/Group.svg" alt="э"/>
             <Link to="/cart" className="Link">
+            <img src="/logo/Group.svg" alt="э"/>
               <span>Покупки</span>
 
             </Link>
@@ -26,28 +25,31 @@ function Header(){
             <p><img src="https://sun9-17.userapi.com/impg/XQ8qgi5-BuKV4k3dRG-fdyHTlEJvlVBQ6VLRyg/SuGMHgKj-GI.jpg?size=750x1000&quality=96&sign=638c9f5091616d9860798416b7c181ce&type=album" hidden width="600" height="250"alt="Яблоко"></img></p>
            
           </li>
-          <li>
-          <img src="/logo/Union.svg" alt="э"/>
+          <li className="mr-30">
+            <Link to="/favorite" classname="Link">
+            <img src="/logo/favoriteHead.svg" alt="э"/>
+              <span>Избранное</span>
+            </Link>
+          </li>
+          <li className="mr-30">
+          
           <Link to="/User" className="Link">
+          <img src="/logo/Union.svg" alt="э"/>
               <span>Аккаунт</span>
 
             </Link>
            
            
           </li>
-          <li>
+          <li className="mr-30">
+          
           <Link to="/login" className="Link">
           <img src="/logo/Union.svg" alt="э"/>
             <span>Авторизация</span>
             
             </Link>
           </li>
-          <li>
-            <Link to="/favorite" classname="Link">
-            <img src="/logo/Union.svg" alt="э"/>
-              <span> Любимые </span>
-            </Link>
-          </li>
+          
         </ul>
         
       </header>
