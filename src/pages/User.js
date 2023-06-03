@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-function User({ onCloseUser, onClickOrders }) {
+function User() {
 const [user, setUser] = useState(null);
 const userId = localStorage.getItem('userId');
-//const userLogin = localStorage.getItem('userLogin');
+
 
 useEffect(() => {
 if (userId) {
@@ -23,19 +23,6 @@ return <div>Сначала пройдите авторизацию</div>;
 }
 
 const Exit = async () => {
-/*for (let i = 0; i < cartItems.length; i++) {
-const item = cartItems[i];
-await axios.delete('https://localhost:7045/UserCart/' + item.id);
-}
-for (let i = 0; i < favoriteItems.length; i++) {
-const item = favoriteItems[i];
-await axios.delete('https://localhost:7045/Favorites/' + item.id);
-}
-for (let i = 0; i < orders.length; i++) {
-const item = orders[i];
-await axios.delete('https://localhost:7045/UserOrders/' + item.id);
-}
-*/
 localStorage.removeItem('userId'); // Удаляем id пользователя из LocalStorage
 localStorage.removeItem('userLogin'); // Удаляем логин пользователя из LocalStorage
 window.location.href = './';

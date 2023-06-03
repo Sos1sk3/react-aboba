@@ -125,6 +125,25 @@ public async Task<IActionResult> DeleteWardInventoryByWardId(int wardId)
     return NoContent();
 }
 
+// DELETE: api/WardInventory/ByAccountId/5
+    [HttpDelete("ByAccountId/{accountId}")]
+    public async Task<IActionResult> DeleteWardInventoryByAccountId(int accountId)
+    {
+        var wardInventory = await _context.WardInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (wardInventory == null)
+        {
+            return NotFound();
+        }
+
+        _context.WardInventory.RemoveRange(wardInventory);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool WardInventoryExists(int id)
     {

@@ -126,6 +126,24 @@ public async Task<IActionResult> DeleteCourierInventoryByCourierId(int courierId
     return NoContent();
 }
 
+    // DELETE: api/CourierInventory/ByAccountId/5
+    [HttpDelete("ByAccountId/{accountId}")]
+    public async Task<IActionResult> DeleteCourierInventoryByAccountId(int accountId)
+    {
+        var courierInventory = await _context.CourierInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (courierInventory == null)
+        {
+            return NotFound();
+        }
+
+        _context.CourierInventory.RemoveRange(courierInventory);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 
     private bool CourierInventoryExists(int id)
     {

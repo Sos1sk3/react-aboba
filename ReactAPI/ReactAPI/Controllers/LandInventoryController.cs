@@ -126,6 +126,25 @@ public class LandInventoryController : ControllerBase
         return NoContent();
     }
 
+// DELETE: api/LandInventory/ByAccountId/5
+    [HttpDelete("ByAccountId/{accountId}")]
+    public async Task<IActionResult> DeleteLandInventoryByAccountId(int accountId)
+    {
+        var landInventory = await _context.LandInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (landInventory == null)
+        {
+            return NotFound();
+        }
+
+        _context.LandInventory.RemoveRange(landInventory);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool LandInventoryExists(int id)
     {

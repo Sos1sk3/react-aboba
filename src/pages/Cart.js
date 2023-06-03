@@ -11,9 +11,9 @@ function Cart() {
   useEffect(() => {
     const fetchItemInfoCura = async () => {
       const userId = localStorage.getItem("userId");
-      const response2 = await axios.get(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`);
+      const response2 = await axios.get(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`); //в таблице корзины курьеров(аккаунт-курьер)
       const itemIds = response2.data.map(item => item.courierId);
-      const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
+      const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`); //в таблице курьеров
       const itemData = response3.data;
       const filteredItems = itemData.filter(item => itemIds.includes(item.id));
       setItemCura(filteredItems);
@@ -53,7 +53,7 @@ function Cart() {
   }, [itemInfoCura, itemInfoLand, itemInfoWard]);
 
   const removeItemCourier = async (itemId) => {
-    await axios.delete(`https://localhost:7241/api/CourierInventory/Courier/${itemId}`);
+    await axios.delete(`https://localhost:7241/api/CourierInventory/Courier/${itemId}`); // в таблице CourierInventory по Id шмотки
     setItemCura(prevItems => prevItems.filter(item => item.id !== itemId));
   };
 
@@ -65,6 +65,22 @@ function Cart() {
   const removeItemWard = async (itemId) => {
     await axios.delete(`https://localhost:7241/api/WardInventory/Ward/${itemId}`);
     setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+  const handleCheckout = async () => {
+    const userId = localStorage.getItem("userId");
+
+    // Удаление записей из таблицы CourierInventory по AccountId
+    const responseCourier = await axios.delete(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`);
+    setItemCura([]);
+
+    // Удаление записей из таблицы LandInventory по AccountId
+    const responseLand = await axios.delete(`https://localhost:7241/api/LandInventory/ByAccountId/${userId}`);
+    setItemLand([]);
+
+    // Удаление записей из таблицы WardInventory по AccountId
+    const responseWard = await axios.delete(`https://localhost:7241/api/WardInventory/ByAccountId/${userId}`);
+    setItemWard([]);
   };
 
   return (
@@ -102,9 +118,11 @@ function Cart() {
 
       <div className="totalPrice">Общая сумма: {totalPrice} руб.</div>
 
-      <Link to = "/Oformlen">
-      <button className="buttonBuy">Оформить заказ</button>
-      </Link>
+      {/* <button className="buttonBuy" onClick={handleCheckout}>Оформить заказ</button> */}
+
+      { <Link to="/Oformlen">
+        <button className="buttonBuy" onClick={handleCheckout}>Оформить заказ</button>
+      </Link> }
     </div>
   );
 }

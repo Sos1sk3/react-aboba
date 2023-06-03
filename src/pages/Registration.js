@@ -7,26 +7,6 @@ const [password, setPassword] = React.useState('');
 const [Steam, setSteam] = React.useState('');
 const [name, setName] = React.useState('');
 const [login, setLogin] = React.useState('');
-//const [countryCodeId, setCountryCodeId] = React.useState(' ');
-//const [options, setOptions] = React.useState([]);
-
-// React.useEffect(() => {
-// axios
-// .get('https://localhost:7045/CountryCodeForPhoneNum')
-// .then((res) => {
-// setOptions(
-// res.data.map((item) => ({
-// value: `${item.country} ${item.countryCode}`,
-// label: `(${item.country}) ${item.countryCode}`
-// })).map((option) => option.value) // преобразуем в массив строк
-// );
-// })
-// .catch((err) => console.log(err));
-// }, []);
-
-// const handleOptionChange = (event) => {
-// setCountryCodeId(event.target.value);
-// };
 
 
 
@@ -48,10 +28,6 @@ alert('Registration Error');
 };
 
 
-// React.useEffect(() => {
-// document.querySelector('.overlay').style.display = 'block';
-// }, []);
-
 return (
 <div className="overlay">
 <div className="Login">
@@ -65,16 +41,6 @@ return (
 <div className="login">
 <input placeholder="Почта" value={email} onChange={(e) => setEmail(e.target.value)} />
 </div>
-{/* <div className="login1" >
-<select value={countryCodeId} onChange={handleOptionChange}>
-{options.map((option) => (
-<option key={option} value={option}>
-{option}
-</option>
-))}
-</select>
-
-</div> */}
 <div className="login">
 <input placeholder="Ссылка на профиль Steam " value={Steam} onChange={(e) => setSteam(e.target.value)} />
 </div>

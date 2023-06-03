@@ -48,133 +48,7 @@ const arr = [
 
   },
 ];
-/*const arrmusic =[
-{
-  
-  Name: 'Вард "Глупышка"',
-  Image: '/logo/music/varddva.jpg',
-  Price: 150,
-  RadiusOfVision: 900,
-  Samocvet:'blue',
-  Status: 'Observer',
 
-},
-{
-  title: 'Вард "РубикКон"',
-  ImageUrl: '/logo/music/vardodin.jpg',
-  Price: 200,
-  Range:1000,
-  Gem:'Red',
-  ObsSen: 'Observer',
- 
-},
-{
-  title: 'Вард "Плющ"',
-  ImageUrl: '/logo/music/vardpoizon.jpg',
-  Price: 150,
-  Range:600,
-  Gem:'Cold Ice',
-  ObsSen: 'Sentry',
- 
-},
-{
-  title: 'Вард "Саурон"',
-  ImageUrl: '/logo/music/vardsentr.jpg',
-  Price: 400,
-  Range:1200,
-  Gem:'black',
-  ObsSen: 'Sentry',
- 
-},
-{
-  title: 'Вард "Саурон"',
-  ImageUrl: '/logo/music/vardsentr.jpg',
-  Price: 400,
-  Range: 1200,
-  Gem:'black',
-  ObsSen: 'Sentry',
-
-},
-
-];
-*/
-const arrLand =[
-  {
-    title: 'Ландшафт "Осенний"',
-    ImageUrl: '/logo/Landshaft/landsh1.jpg',
-    Price: 450,
-    Style: 'Autumn',
-    Description: 'Прекрасный ладншафт'
-  },
-  {
-    title: 'Ландшафт "Морской"',
-    ImageUrl: '/logo/Landshaft/landreef.jpg',
-    Price: 5000,
-    Style: 'UnderWater',
-    Description: 'Супер, мне понравилось,класс'
-  },
-  {
-    title: 'Ландшафт "Sand"',
-    ImageUrl: '/logo/Landshaft/landsand.jpg',
-    Price: 1500,
-    Style: 'Sand King',
-    Description: 'просто супер, даже добавить нечего'
-  },
-  {
-    title: 'Ландшафт "Тропический"',
-    ImageUrl: '/logo/Landshaft/landtrop.jpg',
-    Price: 1200,
-    Style: 'Snake edition',
-    Description: 'оставляет готическое послевкусие'
-  },
-]
-const arrCura =[
-  {
-    title: 'курьер "Golden boy"',
-    ImageUrl: '/logo/Courier/funky.jpg',
-    Price: 50,
-    Speed: 450,
-    Rarity:'rare',
-    Description:'ходовой такой курьер',
-    Fly: 'отсутствует'
-  },
-  {
-    title: 'курьер "Китобой"',
-    ImageUrl: '/logo/Courier/golden.jpg',
-    Price: 50,
-    Speed: 450,
-    Rarity:'rare',
-    Description:'прикольный язь',
-    Fly: 'отсутствует'
-  },
-  {
-    title: 'курьер "Бибизьяна"',
-    ImageUrl: '/logo/Courier/monkey.jpg',
-    Price: 50,
-    Speed: 450,
-    Rarity:'rare',
-    Description:'Умеет лазать по деревьям',
-    Fly: 'присутствует'
-  },
-  {
-    title: 'курьер "Мамонтенок"',
-    ImageUrl: '/logo/Courier/od.jpg',
-    Price: 50,
-    Speed: 450,
-    Rarity:'rare',
-    Description:'ходовой такой курьер',
-    Fly: 'присутствует'
-  },
-  {
-    title: 'курьер "Дед мороз"',
-    ImageUrl: '/logo/Courier/pudd.jpg',
-    Price: 50,
-    Speed: 450,
-    Rarity:'rare',
-    Description:'Он воняет.',
-    Fly: 'Yes'
-  },
-]
 
 function App() {
   const [itemsWard, setItemsWard] = React.useState([]);
@@ -188,19 +62,7 @@ function App() {
 
 
     }, []);
-    // const onAddToCartWard = (obj) =>{
-    //   axios.post('https://647881ab362560649a2debe7.mockapi.io/cart',obj);
-    //   setCartItemsWard((prev)=>[...prev,obj]);
-    // }
-    // const onRemoveWard = (id) => {
-    //   axios.delete(`https://647881ab362560649a2debe7.mockapi.io/cart/${id}`);
-    //   setCartItemsWard((prev)=>prev.filter(obj => obj.id !== id));
-    // }
- 
-
-
-
-
+   
 
     const [itemsLand, setItemsLand] = React.useState([]);
     React.useEffect(() => {
@@ -225,7 +87,7 @@ function App() {
       <Header />
 
 
-      <Route path ="/heroes">
+      {/* <Route path ="/heroes">
       <div className='content p-40'>
       <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
       <div className='d-flex align-center flex-wrap '>
@@ -237,7 +99,7 @@ function App() {
         ))}
       </div>
       </div>
-      </Route>
+      </Route> */}
 
       <Route path ="/ward">
 
