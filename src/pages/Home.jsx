@@ -13,7 +13,7 @@ function Home(){
          
           <div className="vibor_pokupki d-block justify-between ">
 
-          <h1>Покупка предметов на героев</h1>
+          {/* <h1>Покупка предметов на героев</h1>
             <div className="buhanka">
  
             <Link to ="/heroes">
@@ -27,7 +27,7 @@ function Home(){
   
             </div>
 
-          </div>
+          </div> */}
           <h1>Покупка Вардов</h1>
           <div className="buhanka">
          

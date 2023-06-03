@@ -34,6 +34,7 @@ public class LandController : ControllerBase
         return Ok(land);
     }
 
+
     [HttpPost]
     public async Task<IActionResult> CreateLand(Land land)
     {

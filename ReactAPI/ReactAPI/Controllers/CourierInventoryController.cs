@@ -36,6 +36,22 @@ public class CourierInventoryController : ControllerBase
         return Ok(courierInventory);
     }
 
+
+    [HttpGet("ByAccountId/{accountId}")]
+    public async Task<ActionResult<IEnumerable<CourierInventory>>> GetCourierInventoryByAccountId(int accountId)
+    {
+        var courierInventory = await _context.CourierInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (courierInventory == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(courierInventory);
+    }
+
     // POST: api/CourierInventory
     [HttpPost]
     public async Task<ActionResult<CourierInventory>> CreateCourierInventory(CourierInventory courierInventory)
@@ -92,6 +108,24 @@ public class CourierInventoryController : ControllerBase
 
         return NoContent();
     }
+
+// DELETE: api/CourierInventory/Courier/{courierId}
+[HttpDelete("Courier/{courierId}")]
+public async Task<IActionResult> DeleteCourierInventoryByCourierId(int courierId)
+{
+    var courierInventory = await _context.CourierInventory.FirstOrDefaultAsync(c => c.CourierId == courierId);
+
+    if (courierInventory == null)
+    {
+        return NotFound();
+    }
+
+    _context.CourierInventory.Remove(courierInventory);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
 
     private bool CourierInventoryExists(int id)
     {

@@ -204,7 +204,7 @@ function App() {
     const [itemsLand, setItemsLand] = React.useState([]);
     React.useEffect(() => {
         
-        axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => { //сюда ссылка на ландшафты из базы данных
+        axios.get('https://localhost:7241/api/land').then((res) => { //сюда ссылка на ландшафты из базы данных
             setItemsLand(res.data);
         });
 
@@ -213,7 +213,7 @@ function App() {
     const [itemsCura, setItemsCura] = React.useState([]);
     React.useEffect(() => {
         
-      axios.get('https://647881ab362560649a2debe7.mockapi.io/title').then((res) => { //сюда ссылка на курьеров из базы данных
+      axios.get('https://localhost:7241/api/courier').then((res) => { //сюда ссылка на курьеров из базы данных
           setItemsCura(res.data);
       });
 
@@ -245,6 +245,7 @@ function App() {
       <div className='dispay_pi d-flex align-center flex-wrap '>
         {itemsWard.map((obj)=>(
           <Ward
+          Id={obj.id}
           name={obj.name}
           image={obj.image}
           price={obj.price}
@@ -258,21 +259,21 @@ function App() {
         
 
       </div>
-      <h1>Вывод массива из бэка</h1>
 
       </div>
       </Route>
       <Route path ="/land">
       <div className='content p-40'>
-      <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
+      <h1 className="mb-40">В нашем магазине вы найдёте </h1>
       <div className='d-flex align-center flex-wrap'>
         {itemsLand.map((obj)=>(
           <Land
-          Name={obj.Name}
-          Image={obj.Image}
-          Price={obj.Price}
-          Style={obj.Style}
-          Description={obj.Description}
+          Id={obj.id}
+          Name={obj.name}
+          Image={obj.image}
+          Price={obj.price}
+          Style={obj.style}
+          Description={obj.description}
           />
         ))}
       </div>
@@ -280,17 +281,17 @@ function App() {
       </Route>
       <Route path ="/cura">
       <div className='content p-40'>
-      <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
+      <h1 className="mb-40">В нашем магазине вы найдёте </h1>
       <div className='d-flex align-center flex-wrap'>
         {itemsCura.map((obj)=>(
           <Cura
-          Name={obj.Name}
-          Image={obj.Image}
-          Price={obj.Price}
-          Speed ={obj.Speed}
-          Rarity={obj.Rarity}
-          Description={obj.Description}
-          Fly={obj.Fly}
+          Id={obj.id}
+          Name={obj.name}
+          Image={obj.image}
+          Price={obj.price}
+          Speed ={obj.movespeed}
+          Rarity={obj.rarity}
+          Description={obj.description}
           />
         ))}
       </div>
@@ -298,7 +299,7 @@ function App() {
       </Route>
       <Route path ="/cart">
       <div className='content p-40'>
-      <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
+      <h1 className="mb-40"> </h1>
       <div className='d-flex align-center flex-wrap'>
       <Cart/>
         </div>
@@ -322,7 +323,7 @@ function App() {
       </Route>
       <Route path = "/favorite">
       <div className='content p-40'>
-      <h1 className="mb-40">В нашем магазине вы ничего не найдёте </h1>
+      <h1 className="mb-40"> </h1>
       <div className='d-flex align-center flex-wrap'>
           <Favorite/>
         </div>

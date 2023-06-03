@@ -10,5 +10,4 @@ public class LandInventory
 
     public int LandId { get; set; }
 
-    public int CountLand { get; set; }
 }

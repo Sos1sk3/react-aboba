@@ -36,6 +36,22 @@ public class LandInventoryController : ControllerBase
         return Ok(landInventory);
     }
 
+    [HttpGet("ByAccountId/{accountId}")]
+    public async Task<ActionResult<IEnumerable<LandInventory>>> GetLandInventoryByAccountId(int accountId)
+    {
+        var landInventory = await _context.LandInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (landInventory == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(landInventory);
+    }
+
+
     // POST: api/LandInventory
     [HttpPost]
     public async Task<ActionResult<LandInventory>> CreateLandInventory(LandInventory landInventory)
@@ -92,6 +108,24 @@ public class LandInventoryController : ControllerBase
 
         return NoContent();
     }
+
+    // DELETE: api/LandInventory/Land/{landId}
+    [HttpDelete("Land/{landId}")]
+    public async Task<IActionResult> DeleteLandInventoryByLandId(int landId)
+    {
+        var landInventory = await _context.LandInventory.FirstOrDefaultAsync(l => l.LandId == landId);
+
+        if (landInventory == null)
+        {
+            return NotFound();
+        }
+
+        _context.LandInventory.Remove(landInventory);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool LandInventoryExists(int id)
     {

@@ -10,6 +10,4 @@ public class WardInventory
 
     public int WardId { get; set; }
 
-    public int CountWard { get; set; }
-
 }

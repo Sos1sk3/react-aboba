@@ -36,6 +36,22 @@ public class WardInventoryController : ControllerBase
         return Ok(wardInventory);
     }
 
+    [HttpGet("ByAccountId/{accountId}")]
+    public async Task<ActionResult<IEnumerable<WardInventory>>> GetWardInventoryByAccountId(int accountId)
+    {
+        var wardInventory = await _context.WardInventory
+            .Where(c => c.AccountId == accountId)
+            .ToListAsync();
+
+        if (wardInventory == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(wardInventory);
+    }
+
+
     // POST: api/WardInventory
     [HttpPost]
     public async Task<ActionResult<WardInventory>> CreateWardInventory(WardInventory wardInventory)
@@ -92,6 +108,23 @@ public class WardInventoryController : ControllerBase
 
         return NoContent();
     }
+
+[HttpDelete("Ward/{wardId}")]
+public async Task<IActionResult> DeleteWardInventoryByWardId(int wardId)
+{
+    var wardInventory = await _context.WardInventory.FirstOrDefaultAsync(c => c.WardId == wardId);
+
+    if (wardInventory == null)
+    {
+        return NotFound();
+    }
+
+    _context.WardInventory.Remove(wardInventory);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
 
     private bool WardInventoryExists(int id)
     {

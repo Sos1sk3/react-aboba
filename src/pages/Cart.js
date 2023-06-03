@@ -2,56 +2,124 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Cart() {
-  const [cartItemsWard, setCartItemsWard] = useState([]);
-
+  const [itemInfoCura, setItemCura] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://localhost:7241/api/ward")
-      .then((response) => {
-        setCartItemsWard(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const fetchItemInfoCura = async () => {
+
+        const userId = localStorage.getItem("userId");
+
+        const response2 = await axios.get(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`);
+        const itemIds = response2.data.map(item => item.courierId);
+
+        const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
+        const itemData = response3.data;
+
+        const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+
+        setItemCura(filteredItems);
+
+    };
+
+    fetchItemInfoCura();
   }, []);
 
-  function removeItem(id) {
-    axios
-      .delete(`https://647881ab362560649a2debe7.mockapi.io/cart/${id}`)
-      .then(() => {
-        const newCartItems = cartItemsWard.filter((item) => item.id !== id);
-        setCartItemsWard(newCartItems);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  const removeItemCourier = async (itemId) => {
+      await axios.delete(`https://localhost:7241/api/CourierInventory/Courier/${itemId}`);
+      setItemCura(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
 
-  const totalPrice = cartItemsWard.reduce((acc, item) => acc + item.Price, 0);
+  const [itemInfoLand, setItemLand] = useState([]);
+  useEffect(() => {
+    const fetchItemInfoLand = async () => {
+
+        const userId = localStorage.getItem("userId");
+
+        const response2 = await axios.get(`https://localhost:7241/api/LandInventory/ByAccountId/${userId}`);
+        const itemIds = response2.data.map(item => item.landId);
+
+        const response3 = await axios.get(`https://localhost:7241/api/land?itemIds=${itemIds.join(",")}`);
+        const itemData = response3.data;
+
+        const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+
+        setItemLand(filteredItems);
+
+    };
+
+    fetchItemInfoLand();
+  }, []);
+
+  const removeItemLand = async (itemId) => {
+      await axios.delete(`https://localhost:7241/api/LandInventory/Land/${itemId}`);
+      setItemLand(prevItems => prevItems.filter(item => item.id !== itemId));
+
+  };
+
+  const [itemInfoWard, setItemWard] = useState([]);
+
+  useEffect(() => {
+    const fetchItemInfoWard = async () => {
+
+        const userId = localStorage.getItem("userId");
+
+        const response2 = await axios.get(`https://localhost:7241/api/WardInventory/ByAccountId/${userId}`);
+        const itemIds = response2.data.map(item => item.wardId);
+
+        const response3 = await axios.get(`https://localhost:7241/api/ward?itemIds=${itemIds.join(",")}`);
+        const itemData = response3.data;
+
+        const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+
+        setItemWard(filteredItems);
+
+    };
+
+    fetchItemInfoWard();
+  }, []);
+  const removeItemWard = async (itemId) => {
+      await axios.delete(`https://localhost:7241/api/WardInventory/Ward/${itemId}`);
+      setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
 
   return (
     <div className="content p-40">
       <h1 className="mb-40">Моя корзина</h1>
 
-      <div className="card d-flex flex-wrap">
-        {cartItemsWard.map((item) => (
-          <div key={item.id} className="cardM">
-            <img src={item.Image} alt={item.Name} />
-            <h3>{item.Name}</h3>
-            <p>{item.Price} руб.</p>
-            <button className="buttonDelete" onClick={() => removeItem(item.id)}>Удалить</button>
+      <div>
+        
+          <div className="card d-flex flex-wrap">
+            {itemInfoCura.map((item) => (
+              <div key={item.id} className="cardM">
+                <img src={item.image} alt={item.name} />
+                <h3>{item.name}</h3>
+                <p>{item.price} руб.</p>
+                <button className="buttonDelete" onClick={() => removeItemCourier(item.id)}>Удалить</button>
+              </div>
+            ))}
+            {itemInfoLand.map((item) => (
+              <div key={item.id} className="cardM">
+                <img src={item.image} alt={item.name} />
+                <h3>{item.name}</h3>
+                <p>{item.price} руб.</p>
+                <button className="buttonDelete" onClick={() => removeItemLand(item.id)}>Удалить</button>
+            </div>
+            ))}
+            {itemInfoWard.map((item) => (
+              <div key={item.id} className="cardM">
+                <img src={item.image} alt={item.name} />
+                <h3>{item.name}</h3>
+                <p>{item.price} руб.</p>
+                <button className="buttonDelete" onClick={() => removeItemWard(item.id)}>Удалить</button>
+              </div>
+            ))}
+
+
+
           </div>
-        ))}
+          
       </div>
 
-      
-      <div className="total-price" >
-        Итого: {totalPrice} руб.
-      </div>
-        
-      <button className="buttonBuy">Оформить заказ
-      
-      </button>
+      <button className="buttonBuy">Оформить заказ</button>
     </div>
   );
 }
