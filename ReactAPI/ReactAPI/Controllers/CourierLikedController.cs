@@ -63,53 +63,6 @@ public class CourierLikedController : ControllerBase
         return CreatedAtAction("GetCourierLiked", new { id = courierLiked.Id }, courierLiked);
     }
 
-    // PUT: api/CourierLiked/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCourierLiked(int id, CourierLiked courierLiked)
-    {
-        if (id != courierLiked.Id)
-        {
-            return BadRequest();
-        }
-
-        _context.Entry(courierLiked).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!CourierLikedExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-        return NoContent();
-    }
-
-    // DELETE: api/CourierLiked/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCourierLiked(int id)
-    {
-        var courierLiked = await _context.CourierLiked.FindAsync(id);
-
-        if (courierLiked == null)
-        {
-            return NotFound();
-        }
-
-        _context.CourierLiked.Remove(courierLiked);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
-    }
-
     // DELETE: api/CourierLiked/Courier/{courierId}
     [HttpDelete("Courier/{courierId}")]
     public async Task<IActionResult> DeleteCourierLikedByCourierId(int courierId)

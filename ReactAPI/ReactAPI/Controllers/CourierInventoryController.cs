@@ -62,53 +62,6 @@ public class CourierInventoryController : ControllerBase
         return CreatedAtAction("GetCourierInventory", new { id = courierInventory.Id }, courierInventory);
     }
 
-    // PUT: api/CourierInventory/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateCourierInventory(int id, CourierInventory courierInventory)
-    {
-        if (id != courierInventory.Id)
-        {
-            return BadRequest();
-        }
-
-        _context.Entry(courierInventory).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!CourierInventoryExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-        return NoContent();
-    }
-
-    // DELETE: api/CourierInventory/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteCourierInventory(int id)
-    {
-        var courierInventory = await _context.CourierInventory.FindAsync(id);
-
-        if (courierInventory == null)
-        {
-            return NotFound();
-        }
-
-        _context.CourierInventory.Remove(courierInventory);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
-    }
-
 // DELETE: api/CourierInventory/Courier/{courierId}
 [HttpDelete("Courier/{courierId}")]
 public async Task<IActionResult> DeleteCourierInventoryByCourierId(int courierId)

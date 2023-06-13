@@ -62,53 +62,6 @@ public class WardInventoryController : ControllerBase
         return CreatedAtAction("GetWardInventory", new { id = wardInventory.Id }, wardInventory);
     }
 
-    // PUT: api/WardInventory/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateWardInventory(int id, WardInventory wardInventory)
-    {
-        if (id != wardInventory.Id)
-        {
-            return BadRequest();
-        }
-
-        _context.Entry(wardInventory).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!WardInventoryExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-        return NoContent();
-    }
-
-    // DELETE: api/WardInventory/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteWardInventory(int id)
-    {
-        var wardInventory = await _context.WardInventory.FindAsync(id);
-
-        if (wardInventory == null)
-        {
-            return NotFound();
-        }
-
-        _context.WardInventory.Remove(wardInventory);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
-    }
-
 [HttpDelete("Ward/{wardId}")]
 public async Task<IActionResult> DeleteWardInventoryByWardId(int wardId)
 {

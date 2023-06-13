@@ -3,10 +3,19 @@ import axios from "axios";
 import { Link } from 'react-router-dom';
 
 function Cart() {
+  const userId=localStorage.getItem("userId");
+  if (!userId)
+  {
+    window.location.href="/login";
+   
+    
+  }
+  
   const [itemInfoCura, setItemCura] = useState([]);
   const [itemInfoLand, setItemLand] = useState([]);
   const [itemInfoWard, setItemWard] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+ 
 
   useEffect(() => {
     const fetchItemInfoCura = async () => {
@@ -18,6 +27,7 @@ function Cart() {
       const filteredItems = itemData.filter(item => itemIds.includes(item.id));
       setItemCura(filteredItems);
     };
+   
 
     const fetchItemInfoLand = async () => {
       const userId = localStorage.getItem("userId");
@@ -82,6 +92,7 @@ function Cart() {
     const responseWard = await axios.delete(`https://localhost:7241/api/WardInventory/ByAccountId/${userId}`);
     setItemWard([]);
   };
+  
 
   return (
     <div className="content p-40">

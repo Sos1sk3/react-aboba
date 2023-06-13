@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Registration() {
 const [email, setEmail] = React.useState('');
@@ -31,6 +32,9 @@ alert('Registration Error');
 return (
 <div className="overlay">
 <div className="Login">
+<Link to="/login">
+        <h2>вернуться назад</h2>
+        </Link>
 <h2>Регистрация</h2>
 <div className="login">
 <input placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)} />

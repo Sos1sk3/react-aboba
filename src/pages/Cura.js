@@ -4,8 +4,12 @@ import axios from "axios";
 function Cura(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [isAddedF, setIsAddedF] = useState(false);
+  const userId=localStorage.getItem("userId");
 
   const onClickPlus = () => {
+    if (!userId){
+      window.location.href="/login";
+    }else{
     setIsAdded(!isAdded);
     if (isAdded === false) {
       const userId = localStorage.getItem("userId");
@@ -17,9 +21,13 @@ function Cura(props) {
         })
         
     }
+  }
   };
 
   const onClickFav = () => {
+    if (!userId){
+      window.location.href="/login";
+    }else{
     setIsAddedF(!isAddedF);
     if (isAddedF === false) {
       const userId = localStorage.getItem("userId");
@@ -31,6 +39,7 @@ function Cura(props) {
         })
     
     }
+  }
   };
 
   return (
@@ -43,11 +52,12 @@ function Cura(props) {
       <h5>Цена: {props.Price} руб</h5>
       <h5>Скорость: {props.Speed} </h5>
       <h5>Редкость: {props.Rarity}</h5>
+      <h5>Рейтинг: {props.Rating}</h5>
       <img
         className="butad"style={{ width: "32px", height: "32px", margin: "5px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"}
         alt="Add to cart"
       />
-      { <img className="butad" style={{ width: "32px", height: "32px", margin: "5px" }} onClick={onClickFav} src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"} alt="Add to cart"
+      { <img className="butad" style={{ width: "32px", height: "32px", margin: "5px" }} onClick={onClickFav} src={isAddedF ? "/logo/pic/pluscheck.svg" : "/logo/favoff.svg"} alt="Add to cart"
       /> }
     </div>
   );

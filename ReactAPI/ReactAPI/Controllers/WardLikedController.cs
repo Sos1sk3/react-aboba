@@ -63,53 +63,6 @@ public class WardLikedController : ControllerBase
         return CreatedAtAction("GetWardLiked", new { id = wardLiked.Id }, wardLiked);
     }
 
-    // PUT: api/WardLiked/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateWardLiked(int id, WardLiked wardLiked)
-    {
-        if (id != wardLiked.Id)
-        {
-            return BadRequest();
-        }
-
-        _context.Entry(wardLiked).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!WardLikedExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
-        return NoContent();
-    }
-
-    // DELETE: api/WardLiked/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteWardLiked(int id)
-    {
-        var wardLiked = await _context.WardLiked.FindAsync(id);
-
-        if (wardLiked == null)
-        {
-            return NotFound();
-        }
-
-        _context.WardLiked.Remove(wardLiked);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
-    }
-
     [HttpDelete("Ward/{wardId}")]
     public async Task<IActionResult> DeleteWardLikedByWardId(int wardId)
     {

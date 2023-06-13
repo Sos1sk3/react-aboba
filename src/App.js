@@ -155,6 +155,7 @@ function App() {
           Speed ={obj.movespeed}
           Rarity={obj.rarity}
           Description={obj.description}
+          Rating={obj.rating}
           />
         ))}
       </div>
@@ -172,8 +173,15 @@ function App() {
       <Route path="/" exact>
       <Home />
       </Route>
-      <Route path="/login"> 
-      <Autorization /> 
+      <Route path="/login">
+      <div className='content p-40'>
+      <h1 className="mb-40"> </h1>
+      <div className='d-flex align-center flex-wrap'>
+      <Autorization />
+        </div>
+
+        </div> 
+       
       </Route>
       <Route path="/Registration">
         <Registration />

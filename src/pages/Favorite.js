@@ -57,6 +57,14 @@ function Favorite() {
     await axios.delete(`https://localhost:7241/api/WardLiked/Ward/${itemId}`);
     setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
   };
+  
+  const userId=localStorage.getItem("userId");
+  if (!userId)
+  {
+    window.location.href="/login";
+  }
+
+
 
   return (
     <div className="content p-40">

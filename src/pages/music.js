@@ -5,8 +5,11 @@ function Ward(props) {
   
   const[isAdded, setIsAdded] = React.useState(false);
   const[isAddedF, setIsAddedF] = React.useState(false);
-
+  const userId=localStorage.getItem("userId");
   const onClickPlus = () => {
+    if (!userId){
+      window.location.href="/login";
+    }else{
     setIsAdded(!isAdded);
     if (isAdded === false) {
       const userId = localStorage.getItem("userId");
@@ -18,9 +21,13 @@ function Ward(props) {
         })
         
     }
+  }
   };
 
   const onClickFav = () => {
+    if (!userId){
+      window.location.href="/login";
+    }else{
     setIsAddedF(!isAddedF);
     if (isAddedF === false) {
       const userId = localStorage.getItem("userId");
@@ -32,6 +39,7 @@ function Ward(props) {
         })
     
     }
+  }
   };
 
     return (

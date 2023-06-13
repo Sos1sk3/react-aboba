@@ -37,6 +37,9 @@ function Autorization() {
     return (
     <div className="overlay">
     <div className="Login">
+        <Link to="/">
+        <h2 className="Link">вернуться назад</h2>
+        </Link>
     <h2>Авторизация</h2>
     <Link to="/Registration" className="Link">
         

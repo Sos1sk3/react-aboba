@@ -49,7 +49,7 @@ public class AccountController : ControllerBase
 
         return CreatedAtAction(nameof(GetAccount), new { id = account.Id }, account);
     }
-
+/*
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateAccount(int id, Account account)
     {
@@ -94,7 +94,7 @@ public class AccountController : ControllerBase
 
         return NoContent();
     }
-
+*/
     private bool AccountExists(int id)
     {
         return _context.Account.Any(a => a.Id == id);
