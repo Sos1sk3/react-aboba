@@ -14,7 +14,7 @@ function Header(){
           </div>
         </div>
         </a>
-        <ul className="d-flex">
+        <ul className="d-flex mr-30 justify-between">
           <li className="mr-30">
             <Link to="/cart" className="Link">
             <img src="/logo/Group.svg" alt="э"/>
@@ -44,12 +44,19 @@ function Header(){
           <li className="mr-30">
           
           <Link to="/login" className="Link">
-          <img src="/logo/Union.svg" alt="э"/>
+          <img src="/logo/auto.svg" alt="э"/>
             <span>Авторизация</span>
             
             </Link>
           </li>
+          <li className="mr-30">
           
+          <Link to="/Orders" className="Link">
+          <img width="20" height="20" color='#9B9B9B' src="/logo/commun.svg" alt="э"/>
+            <span>Заказы сообщества</span>
+            
+            </Link>
+          </li>
         </ul>
         
       </header>

@@ -28,6 +28,7 @@ function Ward(props) {
   };
 
   const onClickFav = async () => {
+      isAddedF = false;
     if (!userId) {
       window.location.href = "/login";
     } else {

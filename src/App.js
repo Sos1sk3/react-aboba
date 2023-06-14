@@ -14,7 +14,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Cart from './pages/Cart';
 import Favorite from './pages/Favorite';
 import Oformlen from './pages/Oformlen';
-
+import Orders from './pages/Orders';
 
 
 function App() {
@@ -172,6 +172,15 @@ function App() {
           <Oformlen/>
           </div>
         </Route>
+        
+      <Route path="/Orders">
+      <div className='content p-40'>
+          <Orders/>
+          </div>
+
+      </Route>
+
+
     </div>
       
   );
