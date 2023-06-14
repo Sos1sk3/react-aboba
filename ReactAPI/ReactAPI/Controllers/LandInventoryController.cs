@@ -98,6 +98,24 @@ public class LandInventoryController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("ByAccountIdAndLandId/{accountId}/{landId}")]
+    public async Task<IActionResult> DeleteLandInventoryByAccountIdAndLandId(int accountId, int landId)
+    {
+        var landInventory = await _context.LandInventory
+            .Where(c => c.AccountId == accountId && c.LandId == landId)
+            .ToListAsync();
+
+        if (landInventory == null || landInventory.Count == 0)
+        {
+            return NotFound();
+        }
+
+        _context.LandInventory.RemoveRange(landInventory);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool LandInventoryExists(int id)
     {

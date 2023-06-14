@@ -14,90 +14,129 @@ function Cart() {
   useEffect(() => {
     if (!userId) {
       history.push("/login");
-    }
+    } else {
+      const fetchItemInfoCura = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.courierId);
+          const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
 
-    const fetchItemInfoCura = async () => {
-      const response2 = await axios.get(`https://localhost:7241/api/CourierInventory/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.courierId);
-      const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-      const filteredItems = itemData.filter(item => itemIds.includes(item.id));
-      filteredItems.forEach(item => {
-        const matchingItems = response2.data.filter(i => i.courierId === item.id || i.landId === item.id || i.wardId === item.id);
-        item.quantity = matchingItems.reduce((total, item) => total + item.quantity, 0);
-      });
-      setItemCura(filteredItems);
-    };
+          const filteredItems = itemData.map(item => {
+            const matchingItems = response2.data.filter(i => i.courierId === item.id);
+            if (matchingItems.length > 0) {
+              item.quantity = matchingItems.reduce((total, i) => total + i.quantity, 0);
+              return {
+                ...item,
+                accountId: matchingItems[0].accountId,
+                courierId: matchingItems[0].courierId
+              };
+            } else {
+              return null;
+            }
+          });
 
-    const fetchItemInfoLand = async () => {
-      const response2 = await axios.get(`https://localhost:7241/api/LandInventory/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.landId);
-      const response3 = await axios.get(`https://localhost:7241/api/land?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-      const filteredItems = itemData.filter(item => itemIds.includes(item.id));
-      filteredItems.forEach(item => {
-        const matchingItems = response2.data.filter(i => i.courierId === item.id || i.landId === item.id || i.wardId === item.id);
-        item.quantity = matchingItems.reduce((total, item) => total + item.quantity, 0);
-      });
-      setItemLand(filteredItems);
-    };
-
-    const fetchItemInfoWard = async () => {
-      const response2 = await axios.get(`https://localhost:7241/api/WardInventory/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.wardId);
-      const response3 = await axios.get(`https://localhost:7241/api/ward?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-    
-      const filteredItems = itemData.map(item => {
-        const matchingItems = response2.data.filter(i => i.wardId === item.id);
-        if (matchingItems.length > 0) {
-          item.quantity = matchingItems.reduce((total, i) => total + i.quantity, 0);
-          return {
-            ...item,
-            accountId: matchingItems[0].accountId,
-            wardId: matchingItems[0].wardId
-          };
-        } else {
-          return null;
+          setItemCura(filteredItems.filter(item => item !== null));
+        } catch (error) {
+          // Обработка ошибок
+          console.error("Ошибка при получении информации о товарах (Courier)", error);
         }
-      });
-    
-      setItemWard(filteredItems.filter(item => item !== null));
-    };
-    
+      };
 
-    fetchItemInfoCura();
-    fetchItemInfoLand();
-    fetchItemInfoWard();
+      const fetchItemInfoLand = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/LandInventory/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.landId);
+          const response3 = await axios.get(`https://localhost:7241/api/land?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
+
+          const filteredItems = itemData.map(item => {
+            const matchingItems = response2.data.filter(i => i.landId === item.id);
+            if (matchingItems.length > 0) {
+              item.quantity = matchingItems.reduce((total, i) => total + i.quantity, 0);
+              return {
+                ...item,
+                accountId: matchingItems[0].accountId,
+                landId: matchingItems[0].landId
+              };
+            } else {
+              return null;
+            }
+          });
+
+          setItemLand(filteredItems.filter(item => item !== null));
+        } catch (error) {
+          // Обработка ошибок
+          console.error("Ошибка при получении информации о товарах (Land)", error);
+        }
+      };
+
+      const fetchItemInfoWard = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/WardInventory/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.wardId);
+          const response3 = await axios.get(`https://localhost:7241/api/ward?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
+
+          const filteredItems = itemData.map(item => {
+            const matchingItems = response2.data.filter(i => i.wardId === item.id);
+            if (matchingItems.length > 0) {
+              item.quantity = matchingItems.reduce((total, i) => total + i.quantity, 0);
+              return {
+                ...item,
+                accountId: matchingItems[0].accountId,
+                wardId: matchingItems[0].wardId
+              };
+            } else {
+              return null;
+            }
+          });
+
+          setItemWard(filteredItems.filter(item => item !== null));
+        } catch (error) {
+          // Обработка ошибок
+          console.error("Ошибка при получении информации о товарах (Ward)", error);
+        }
+      };
+
+      fetchItemInfoCura();
+      fetchItemInfoLand();
+      fetchItemInfoWard();
+    }
   }, [userId, history]);
 
   useEffect(() => {
-    const totalPriceCura = itemInfoCura.reduce((total, item) => total + item.price, 0);
-    const totalPriceLand = itemInfoLand.reduce((total, item) => total + item.price, 0);
-    const totalPriceWard = itemInfoWard.reduce((total, item) => total + item.price, 0);
-    const total = totalPriceCura + totalPriceLand + totalPriceWard;
-    setTotalPrice(total);
-    setIsCartEmpty(total === 0);
+    const calculateTotalPrice = () => {
+      const totalPriceCura = itemInfoCura.reduce((total, item) => total + item.price * item.quantity, 0);
+      const totalPriceLand = itemInfoLand.reduce((total, item) => total + item.price * item.quantity, 0);
+      const totalPriceWard = itemInfoWard.reduce((total, item) => total + item.price * item.quantity, 0);
+      const totalPrice = totalPriceCura + totalPriceLand + totalPriceWard;
+      setTotalPrice(totalPrice);
+    };
+
+    calculateTotalPrice();
+
+    setIsCartEmpty(itemInfoCura.length === 0 && itemInfoLand.length === 0 && itemInfoWard.length === 0);
   }, [itemInfoCura, itemInfoLand, itemInfoWard]);
 
   const handleCheckout = async () => {
-    if (isCartEmpty) {
-      return; // Нет товаров в корзине, ничего не делаем
-    }
-  
     try {
+      if (isCartEmpty) {
+        return; // Нет товаров в корзине, ничего не делаем
+      }
+  
       const deleteRequests = [];
   
       for (const item of itemInfoCura) {
-        deleteRequests.push(axios.delete(`https://localhost:7241/api/CourierInventory/Courier/${item.id}`));
+        deleteRequests.push(axios.delete(`https://localhost:7241/api/CourierInventory/ByAccountId/${item.accountId}`));
       }
   
       for (const item of itemInfoLand) {
-        deleteRequests.push(axios.delete(`https://localhost:7241/api/LandInventory/Land/${item.id}`));
+        deleteRequests.push(axios.delete(`https://localhost:7241/api/LandInventory/ByAccountId/${item.accountId}`));
       }
   
       for (const item of itemInfoWard) {
-        deleteRequests.push(axios.delete(`https://localhost:7241/api/WardInventory/Ward/${item.id}`));
+        deleteRequests.push(axios.delete(`https://localhost:7241/api/WardInventory/ByAccountId/${item.accountId}`));
       }
   
       await Promise.all(deleteRequests);
@@ -112,53 +151,51 @@ function Cart() {
     }
   };
   
+
   const removeItemCourier = async (itemId) => {
     try {
       const itemToRemove = itemInfoCura.find(item => item.id === itemId);
       if (!itemToRemove) return;
-  
-      const { accountId, wardId } = itemToRemove;
-  
-      await axios.delete(`https://localhost:7241/api/CourierInventory/Courier/${itemId}`);
-  
-      setItemCura(prevItems => prevItems.filter(item => item.accountId !== accountId || item.wardId !== wardId));
+
+      const { accountId, courierId } = itemToRemove;
+
+      await axios.delete(`https://localhost:7241/api/CourierInventory/ByAccountIdAndCourierId/${accountId}/${courierId}`);
+
+      setItemCura(prevItems => prevItems.filter(item => item.accountId !== accountId || item.courierId !== courierId));
     } catch (error) {
       console.error("Ошибка при удалении элемента из корзины (Courier)", error);
     }
   };
-  
+
   const removeItemLand = async (itemId) => {
     try {
       const itemToRemove = itemInfoLand.find(item => item.id === itemId);
       if (!itemToRemove) return;
-  
-      const { accountId, wardId } = itemToRemove;
-  
-      await axios.delete(`https://localhost:7241/api/LandInventory/Land/${itemId}`);
-  
-      setItemLand(prevItems => prevItems.filter(item => item.accountId !== accountId || item.wardId !== wardId));
+
+      const { accountId, landId } = itemToRemove;
+
+      await axios.delete(`https://localhost:7241/api/LandInventory/ByAccountIdAndLandId/${accountId}/${landId}`);
+
+      setItemLand(prevItems => prevItems.filter(item => item.accountId !== accountId || item.landId !== landId));
     } catch (error) {
       console.error("Ошибка при удалении элемента из корзины (Land)", error);
     }
   };
-  
+
   const removeItemWard = async (itemId) => {
     try {
       const itemToRemove = itemInfoWard.find(item => item.id === itemId);
       if (!itemToRemove) return;
-  
+
       const { accountId, wardId } = itemToRemove;
-  
+
       await axios.delete(`https://localhost:7241/api/WardInventory/ByAccountIdAndWardId/${accountId}/${wardId}`);
-  
+
       setItemWard(prevItems => prevItems.filter(item => item.accountId !== accountId || item.wardId !== wardId));
     } catch (error) {
       console.error("Ошибка при удалении элемента из корзины (Ward)", error);
     }
   };
-  
-  
-  
 
   const getItemQuantity = (itemId, category) => {
     let quantity = 0;
@@ -218,16 +255,13 @@ function Cart() {
               </div>
             ))}
           </div>
-
-          <div className="totalPrice">Общая сумма: {totalPrice} руб.</div>
-
-          {!isCartEmpty && (
-            <Link to="/Oformlen">
-              <button className="buttonBuy" onClick={handleCheckout}>Оформить заказ</button>
-            </Link>
-          )}
+          <div className="totalPrice">
+            Общая сумма: {totalPrice} руб.
+          </div>
+          <button className="button" onClick={handleCheckout}>Оформить заказ</button>
         </div>
       )}
+      <Link to="/">На главную</Link>
     </div>
   );
 }

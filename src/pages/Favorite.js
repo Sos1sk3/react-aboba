@@ -1,76 +1,89 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 function Favorite() {
-
   const [itemInfoCura, setItemCura] = useState([]);
   const [itemInfoLand, setItemLand] = useState([]);
   const [itemInfoWard, setItemWard] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
-    const userId=localStorage.getItem("userId");
-  if (!userId)
-  {
-    window.location.href="/login";
-  }
-  else{
-    
-  
-    const fetchItemInfoCura = async () => {
-      const userId = localStorage.getItem("userId");
-      const response2 = await axios.get(`https://localhost:7241/api/CourierLiked/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.courierId);
-      const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-      const filteredItems = itemData.filter(item => itemIds.includes(item.id));
-      setItemCura(filteredItems);
-    };
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      history.push("/login");
+    } else {
+      const fetchItemInfoCura = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/CourierLiked/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.courierId);
+          const response3 = await axios.get(`https://localhost:7241/api/courier?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
+          const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+          setItemCura(filteredItems);
+        } catch (error) {
+          console.error("Ошибка при получении информации о товарах (Courier)", error);
+        }
+      };
 
-    const fetchItemInfoLand = async () => {
-      const userId = localStorage.getItem("userId");
-      const response2 = await axios.get(`https://localhost:7241/api/LandLiked/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.landId);
-      const response3 = await axios.get(`https://localhost:7241/api/land?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-      const filteredItems = itemData.filter(item => itemIds.includes(item.id));
-      setItemLand(filteredItems);
-    };
+      const fetchItemInfoLand = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/LandLiked/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.landId);
+          const response3 = await axios.get(`https://localhost:7241/api/land?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
+          const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+          setItemLand(filteredItems);
+        } catch (error) {
+          console.error("Ошибка при получении информации о товарах (Land)", error);
+        }
+      };
 
-    const fetchItemInfoWard = async () => {
-      const userId = localStorage.getItem("userId");
-      const response2 = await axios.get(`https://localhost:7241/api/WardLiked/ByAccountId/${userId}`);
-      const itemIds = response2.data.map(item => item.wardId);
-      const response3 = await axios.get(`https://localhost:7241/api/ward?itemIds=${itemIds.join(",")}`);
-      const itemData = response3.data;
-      const filteredItems = itemData.filter(item => itemIds.includes(item.id));
-      setItemWard(filteredItems);
-    };
+      const fetchItemInfoWard = async () => {
+        try {
+          const response2 = await axios.get(`https://localhost:7241/api/WardLiked/ByAccountId/${userId}`);
+          const itemIds = response2.data.map(item => item.wardId);
+          const response3 = await axios.get(`https://localhost:7241/api/ward?itemIds=${itemIds.join(",")}`);
+          const itemData = response3.data;
+          const filteredItems = itemData.filter(item => itemIds.includes(item.id));
+          setItemWard(filteredItems);
+        } catch (error) {
+          console.error("Ошибка при получении информации о товарах (Ward)", error);
+        }
+      };
 
-    fetchItemInfoCura();
-    fetchItemInfoLand();
-    fetchItemInfoWard();
-  }
-  }, []);
-
+      fetchItemInfoCura();
+      fetchItemInfoLand();
+      fetchItemInfoWard();
+    }
+  }, [history]);
 
   const removeItemCourier = async (itemId) => {
-    await axios.delete(`https://localhost:7241/api/CourierLiked/Courier/${itemId}`);
-    setItemCura(prevItems => prevItems.filter(item => item.id !== itemId));
+    try {
+      await axios.delete(`https://localhost:7241/api/CourierLiked/Courier/${itemId}`);
+      setItemCura(prevItems => prevItems.filter(item => item.id !== itemId));
+    } catch (error) {
+      console.error("Ошибка при удалении товара (Courier)", error);
+    }
   };
 
   const removeItemLand = async (itemId) => {
-    await axios.delete(`https://localhost:7241/api/LandLiked/Land/${itemId}`);
-    setItemLand(prevItems => prevItems.filter(item => item.id !== itemId));
+    try {
+      await axios.delete(`https://localhost:7241/api/LandLiked/Land/${itemId}`);
+      setItemLand(prevItems => prevItems.filter(item => item.id !== itemId));
+    } catch (error) {
+      console.error("Ошибка при удалении товара (Land)", error);
+    }
   };
 
   const removeItemWard = async (itemId) => {
-    await axios.delete(`https://localhost:7241/api/WardLiked/Ward/${itemId}`);
-    setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
+    try {
+      await axios.delete(`https://localhost:7241/api/WardLiked/Ward/${itemId}`);
+      setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
+    } catch (error) {
+      console.error("Ошибка при удалении товара (Ward)", error);
+    }
   };
-  
-
-
-
 
   return (
     <div className="content p-40">
@@ -104,8 +117,6 @@ function Favorite() {
           ))}
         </div>
       </div>
-
-      
     </div>
   );
 }
