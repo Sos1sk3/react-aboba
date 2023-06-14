@@ -4,6 +4,7 @@ import axios from "axios";
 function Ward(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [isAddedF, setIsAddedF] = useState(false);
+  const [isFavClicked, setIsFavClicked] = useState(false);
   const [counter, setCounter] = useState(1);
   const userId = localStorage.getItem("userId");
 
@@ -15,7 +16,7 @@ function Ward(props) {
       if (isAdded === false) {
         const userId = localStorage.getItem("userId");
         const wardId = props.Id;
-  
+
         axios.post("https://localhost:7241/api/WardInventory", {
           AccountId: userId,
           WardId: wardId,
@@ -25,20 +26,21 @@ function Ward(props) {
       setCounter(1); // Обнуляем счетчик после добавления в корзину
     }
   };
-  
 
   const onClickFav = async () => {
     if (!userId) {
       window.location.href = "/login";
     } else {
-      setIsAddedF(!isAddedF);
-      if (isAddedF === false) {
+      if (!isFavClicked) {
+        setIsAddedF(!isAddedF);
         const wardId = props.Id;
 
         await axios.post("https://localhost:7241/api/WardLiked", {
           AccountId: userId,
           WardId: wardId,
         });
+
+        setIsFavClicked(true); // Блокируем повторное нажатие на кнопку
       }
     }
   };

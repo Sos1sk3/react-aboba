@@ -4,7 +4,8 @@ import axios from "axios";
 function Land(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [isAddedF, setIsAddedF] = useState(false);
-  const [counter, setCounter] = useState(1); // Счетчик для количества добавляемых вещей
+  const [isFavClicked, setIsFavClicked] = useState(false);
+  const [counter, setCounter] = useState(1);
   const userId = localStorage.getItem("userId");
 
   const onClickPlus = async () => {
@@ -21,7 +22,7 @@ function Land(props) {
           Quantity: counter,
         });
       }
-      setCounter(1); // Обнуляем счетчик после добавления в корзину
+      setCounter(1);
     }
   };
 
@@ -29,20 +30,21 @@ function Land(props) {
     if (!userId) {
       window.location.href = "/login";
     } else {
-      setIsAddedF(!isAddedF);
-      if (isAddedF === false) {
+      if (!isFavClicked) {
+        setIsAddedF(!isAddedF);
         const landId = props.Id;
 
         await axios.post("https://localhost:7241/api/LandLiked", {
           AccountId: userId,
           LandId: landId,
         });
+
+        setIsFavClicked(true);
       }
     }
   };
 
   const handleCounterChange = (value) => {
-    // Обработчик изменения значения счетчика
     if (value >= 1) {
       setCounter(value);
     }
@@ -79,15 +81,14 @@ function Land(props) {
         src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"}
         alt="Add to cart"
       />
-      {
-        <img
-          className="butad"
-          style={{ width: "32px", height: "32px", margin: "5px" }}
-          onClick={onClickFav}
-          src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"}
-          alt="Add to cart"
-        />
-      }
+      <img
+        className="butad"
+        style={{ width: "32px", height: "32px", margin: "5px" }}
+        onClick={onClickFav}
+        src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"}
+        alt="Add to cart"
+        disabled={isFavClicked}
+      />
     </div>
   );
 }
