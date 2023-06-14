@@ -36,6 +36,26 @@ public class WardInventoryController : ControllerBase
         return Ok(wardInventory);
     }
 
+   // GET: api/WardInventory/ByWardId/{wardId}
+    [HttpGet("ByWardId/{wardId}")]
+    public async Task<ActionResult<IEnumerable<WardInventory>>> GetWardInventoryByWardId(int wardId)
+    {
+        var wardInventory = await _context.WardInventory
+            .Where(w => w.WardId == wardId)
+            .ToListAsync();
+
+        if (wardInventory == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(wardInventory);
+    }
+
+
+
+
+
     [HttpGet("ByAccountId/{accountId}")]
     public async Task<ActionResult<IEnumerable<WardInventory>>> GetWardInventoryByAccountId(int accountId)
     {
@@ -77,6 +97,41 @@ public async Task<IActionResult> DeleteWardInventoryByWardId(int wardId)
 
     return NoContent();
 }
+
+/*[HttpDelete("{id}")]
+public async Task<IActionResult> DeleteWardInventory(int id)
+{
+    var wardInventory = await _context.WardInventory.FindAsync(id);
+
+    if (wardInventory == null)
+    {
+        return NotFound();
+    }
+
+    _context.WardInventory.Remove(wardInventory);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}*/
+
+[HttpDelete("ByAccountIdAndWardId/{accountId}/{wardId}")]
+public async Task<IActionResult> DeleteWardInventoryByAccountIdAndWardId(int accountId, int wardId)
+{
+    var wardInventory = await _context.WardInventory
+        .Where(c => c.AccountId == accountId && c.WardId == wardId)
+        .ToListAsync();
+
+    if (wardInventory == null || wardInventory.Count == 0)
+    {
+        return NotFound();
+    }
+
+    _context.WardInventory.RemoveRange(wardInventory);
+    await _context.SaveChangesAsync();
+
+    return NoContent();
+}
+
 
 // DELETE: api/WardInventory/ByAccountId/5
     [HttpDelete("ByAccountId/{accountId}")]

@@ -16,39 +16,6 @@ import Favorite from './pages/Favorite';
 import Oformlen from './pages/Oformlen';
 
 
-const arr = [
-  {
-    title: 'Alcemist',
-    ImageUrl: '/logo/hedota/image1.png'
-
-  },
-  {
-    title: 'meepo',
-    ImageUrl: '/logo/hedota/image4.png'
-
-  },
-  {
-    title: 'tinker',
-    ImageUrl: '/logo/hedota/image7.png'
-
-  },
-  {
-    title: 'earth spirit',
-    ImageUrl: '/logo/hedota/image16.png'
-
-  },
-  {
-    title: 'earth spirit',
-    ImageUrl: '/logo/hedota/image16.png'
-
-  },
-  {
-    title: 'earth spirit',
-    ImageUrl: '/logo/hedota/image16.png'
-
-  },
-];
-
 
 function App() {
   const [itemsWard, setItemsWard] = React.useState([]);

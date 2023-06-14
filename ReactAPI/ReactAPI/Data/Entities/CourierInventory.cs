@@ -9,5 +9,6 @@ public class CourierInventory
     public int AccountId { get; set; }
 
     public int CourierId { get; set; }
+    public int Quantity { get; set; }
 
 }

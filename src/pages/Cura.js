@@ -4,42 +4,48 @@ import axios from "axios";
 function Cura(props) {
   const [isAdded, setIsAdded] = useState(false);
   const [isAddedF, setIsAddedF] = useState(false);
-  const userId=localStorage.getItem("userId");
+  const [counter, setCounter] = useState(1); // Счетчик для количества добавляемых вещей
+  const userId = localStorage.getItem("userId");
 
-  const onClickPlus = () => {
-    if (!userId){
-      window.location.href="/login";
-    }else{
-    setIsAdded(!isAdded);
-    if (isAdded === false) {
-      const userId = localStorage.getItem("userId");
-      const courierId = props.Id;
+  const onClickPlus = async () => {
+    if (!userId) {
+      window.location.href = "/login";
+    } else {
+      setIsAdded(!isAdded);
+      if (isAdded === false) {
+        const courierId = props.Id;
 
-      axios.post("https://localhost:7241/api/CourierInventory", {
+        await axios.post("https://localhost:7241/api/CourierInventory", {
           AccountId: userId,
           CourierId: courierId,
-        })
-        
+          Quantity: counter,
+        });
+      }
+      setCounter(1); // Обнуляем счетчик после добавления в корзину
     }
-  }
   };
 
-  const onClickFav = () => {
-    if (!userId){
-      window.location.href="/login";
-    }else{
-    setIsAddedF(!isAddedF);
-    if (isAddedF === false) {
-      const userId = localStorage.getItem("userId");
-      const courierId = props.Id;
-  
-      axios.post("https://localhost:7241/api/CourierLiked", {
+  const onClickFav = async () => {
+    if (!userId) {
+      window.location.href = "/login";
+    } else {
+      setIsAddedF(!isAddedF);
+      if (isAddedF === false) {
+        const courierId = props.Id;
+
+        await axios.post("https://localhost:7241/api/CourierLiked", {
           AccountId: userId,
           CourierId: courierId,
-        })
-    
+        });
+      }
     }
-  }
+  };
+
+  const handleCounterChange = (value) => {
+    // Обработчик изменения значения счетчика
+    if (value >= 1) {
+      setCounter(value);
+    }
   };
 
   return (
@@ -53,12 +59,37 @@ function Cura(props) {
       <h5>Скорость: {props.Speed} </h5>
       <h5>Редкость: {props.Rarity}</h5>
       <h5>Рейтинг: {props.Rating}</h5>
+      <div className="counter">
+        <button
+          className="counterBtn"
+          onClick={() => handleCounterChange(counter - 1)}
+        >
+          -
+        </button>
+        <span className="counterValue">{counter}</span>
+        <button
+          className="counterBtn"
+          onClick={() => handleCounterChange(counter + 1)}
+        >
+          +
+        </button>
+      </div>
       <img
-        className="butad"style={{ width: "32px", height: "32px", margin: "5px" }} onClick={onClickPlus} src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"}
+        className="butad"
+        style={{ width: "32px", height: "32px", margin: "5px" }}
+        onClick={onClickPlus}
+        src={isAdded ? "/logo/pic/pluscheck.svg" : "/logo/pic/plusbutt.svg"}
         alt="Add to cart"
       />
-      { <img className="butad" style={{ width: "32px", height: "32px", margin: "5px" }} onClick={onClickFav} src={isAddedF ? "/logo/pic/pluscheck.svg" : "/logo/favoff.svg"} alt="Add to cart"
-      /> }
+      {
+        <img
+          className="butad"
+          style={{ width: "32px", height: "32px", margin: "5px" }}
+          onClick={onClickFav}
+          src={isAddedF ? "/logo/pic/pluscheck.svg" : "/logo/favoff.svg"}
+          alt="Add to cart"
+        />
+      }
     </div>
   );
 }

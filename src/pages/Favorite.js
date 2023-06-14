@@ -2,11 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Favorite() {
+
   const [itemInfoCura, setItemCura] = useState([]);
   const [itemInfoLand, setItemLand] = useState([]);
   const [itemInfoWard, setItemWard] = useState([]);
 
   useEffect(() => {
+    const userId=localStorage.getItem("userId");
+  if (!userId)
+  {
+    window.location.href="/login";
+  }
+  else{
+    
+  
     const fetchItemInfoCura = async () => {
       const userId = localStorage.getItem("userId");
       const response2 = await axios.get(`https://localhost:7241/api/CourierLiked/ByAccountId/${userId}`);
@@ -40,6 +49,7 @@ function Favorite() {
     fetchItemInfoCura();
     fetchItemInfoLand();
     fetchItemInfoWard();
+  }
   }, []);
 
 
@@ -58,11 +68,7 @@ function Favorite() {
     setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
   };
   
-  const userId=localStorage.getItem("userId");
-  if (!userId)
-  {
-    window.location.href="/login";
-  }
+
 
 
 

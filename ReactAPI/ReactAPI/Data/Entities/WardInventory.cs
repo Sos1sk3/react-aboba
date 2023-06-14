@@ -10,4 +10,6 @@ public class WardInventory
 
     public int WardId { get; set; }
 
+    public int Quantity { get; set; }
+
 }

@@ -9,5 +9,7 @@ public class LandInventory
     public int AccountId { get; set; }
 
     public int LandId { get; set; }
+    
+    public int Quantity { get; set; }
 
 }
