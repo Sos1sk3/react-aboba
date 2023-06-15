@@ -124,7 +124,23 @@ function Cart() {
       if (isCartEmpty) {
         return; // Нет товаров в корзине, ничего не делаем
       }
+      
+     /* const orderData = {
+        OrderId: 12345, 
+        Userame: 'JohnDoe', 
+        ItemName: 'Example Item', 
+        Price: 10, 
+        Quantity: 2 
+      };
   
+      axios.post("https://localhost:7241/api/Orders", {
+        OrderId: 12345, 
+        Userame: userId, 
+        ItemName: item.name, 
+        Price: 10, 
+        Quantity: 2  // Используем значение счетчика как количество записей
+        }); */
+
       const deleteRequests = [];
   
       for (const item of itemInfoCura) {
@@ -140,6 +156,8 @@ function Cart() {
       }
   
       await Promise.all(deleteRequests);
+
+      //await new Promise(resolve => setTimeout(resolve, 2000));
   
       setItemCura([]);
       setItemLand([]);
@@ -258,7 +276,9 @@ function Cart() {
           <div className="totalPrice">
             Общая сумма: {totalPrice} руб.
           </div>
+          <Link to = "/Oformlen" className="Link">
           <button className="button" onClick={handleCheckout}>Оформить заказ</button>
+          </Link>
         </div>
       )}
       <Link to="/">На главную</Link>

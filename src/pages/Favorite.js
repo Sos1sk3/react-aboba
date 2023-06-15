@@ -58,28 +58,31 @@ function Favorite() {
     }
   }, [history]);
 
-  const removeItemCourier = async (itemId) => {
+  const removeItemCourier = async (courierId) => {
     try {
-      await axios.delete(`https://localhost:7241/api/CourierLiked/Courier/${itemId}`);
-      setItemCura(prevItems => prevItems.filter(item => item.id !== itemId));
+      const accountId = localStorage.getItem("userId");
+      await axios.delete(`https://localhost:7241/api/CourierLiked/ByAccountAndCourier/${accountId}/${courierId}`);
+      setItemCura(prevItems => prevItems.filter(item => item.id !== courierId));
     } catch (error) {
       console.error("Ошибка при удалении товара (Courier)", error);
     }
   };
-
-  const removeItemLand = async (itemId) => {
+  
+  const removeItemLand = async (landId) => {
     try {
-      await axios.delete(`https://localhost:7241/api/LandLiked/Land/${itemId}`);
-      setItemLand(prevItems => prevItems.filter(item => item.id !== itemId));
+      const accountId = localStorage.getItem("userId");
+      await axios.delete(`https://localhost:7241/api/LandLiked/ByAccountAndLand/${accountId}/${landId}`);
+      setItemLand(prevItems => prevItems.filter(item => item.id !== landId));
     } catch (error) {
       console.error("Ошибка при удалении товара (Land)", error);
     }
   };
-
-  const removeItemWard = async (itemId) => {
+  
+  const removeItemWard = async (wardId) => {
     try {
-      await axios.delete(`https://localhost:7241/api/WardLiked/Ward/${itemId}`);
-      setItemWard(prevItems => prevItems.filter(item => item.id !== itemId));
+      const accountId = localStorage.getItem("userId");
+      await axios.delete(`https://localhost:7241/api/WardLiked/ByAccountAndWard/${accountId}/${wardId}`);
+      setItemWard(prevItems => prevItems.filter(item => item.id !== wardId));
     } catch (error) {
       console.error("Ошибка при удалении товара (Ward)", error);
     }

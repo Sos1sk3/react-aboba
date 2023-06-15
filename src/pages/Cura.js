@@ -61,6 +61,7 @@ function Cura(props) {
       <h5>Скорость: {props.Speed} </h5>
       <h5>Редкость: {props.Rarity}</h5>
       <h5>Рейтинг: {props.Rating}</h5>
+      <div className="aboba123">
       <div className="counter">
         <button
           className="counterBtn"
@@ -91,6 +92,7 @@ function Cura(props) {
         alt="Add to cart"
         disabled={isFavClicked}
       />
+      </div>
     </div>
   );
 }

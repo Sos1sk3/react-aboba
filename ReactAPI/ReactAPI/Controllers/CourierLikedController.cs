@@ -80,6 +80,24 @@ public class CourierLikedController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("ByAccountAndCourier/{accountId}/{courierId}")]
+    public async Task<IActionResult> DeleteByAccountAndCourier(int accountId, int courierId)
+    {
+        var courierLiked = await _context.CourierLiked
+            .Where(w => w.AccountId == accountId && w.CourierId == courierId)
+            .ToListAsync();
+
+        if (courierLiked == null)
+        {
+            return NotFound();
+        }
+
+        _context.CourierLiked.RemoveRange(courierLiked);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool CourierLikedExists(int id)
     {

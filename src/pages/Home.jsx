@@ -7,7 +7,7 @@ function Home(){
         <div className="content p-40 ">
         <div className="d-flex align-center mb-40 justify-between ">
           
-        <h1><a href = "https://www.youtube.com/watch?v=1RNft8NLFYo" target = "_blanc" >Пудж На Диване <p>Интернет-магазин шмоток по доте</p> </a></h1>
+        <h1><a  target = "_blanc" >Пудж На Диване <p>Интернет-магазин шмоток по доте</p> </a></h1>
         
         </div>
          

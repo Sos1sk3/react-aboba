@@ -49,14 +49,14 @@ function Header(){
             
             </Link>
           </li>
-          <li className="mr-30">
+          {/* <li className="mr-30">
           
           <Link to="/Orders" className="Link">
           <img width="20" height="20" color='#9B9B9B' src="/logo/commun.svg" alt="э"/>
             <span>Заказы сообщества</span>
             
             </Link>
-          </li>
+          </li> */}
         </ul>
         
       </header>

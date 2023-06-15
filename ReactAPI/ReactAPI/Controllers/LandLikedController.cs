@@ -80,6 +80,24 @@ public class LandLikedController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("ByAccountAndLand/{accountId}/{landId}")]
+    public async Task<IActionResult> DeleteByAccountAndLand(int accountId, int landId)
+    {
+        var landLiked = await _context.LandLiked
+            .Where(w => w.AccountId == accountId && w.LandId == landId)
+            .ToListAsync();
+
+        if (landLiked == null)
+        {
+            return NotFound();
+        }
+
+        _context.LandLiked.RemoveRange(landLiked);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
 
     private bool LandLikedExists(int id)
     {

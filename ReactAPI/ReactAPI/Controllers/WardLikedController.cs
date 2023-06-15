@@ -79,6 +79,23 @@ public class WardLikedController : ControllerBase
         return NoContent();
     }
 
+    [HttpDelete("ByAccountAndWard/{accountId}/{wardId}")]
+        public async Task<IActionResult> DeleteByAccountAndWard(int accountId, int wardId)
+        {
+            var wardLiked = await _context.WardLiked
+                .Where(w => w.AccountId == accountId && w.WardId == wardId)
+                .ToListAsync();
+
+            if (wardLiked == null)
+            {
+                return NotFound();
+            }
+
+            _context.WardLiked.RemoveRange(wardLiked);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
     private bool WardLikedExists(int id)
     {

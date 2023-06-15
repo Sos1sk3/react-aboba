@@ -28,7 +28,6 @@ function Ward(props) {
   };
 
   const onClickFav = async () => {
-      isAddedF = false;
     if (!userId) {
       window.location.href = "/login";
     } else {
@@ -67,6 +66,7 @@ function Ward(props) {
       <h5>Самоцвет: {props.samocvet}</h5>
       <h5>Тип: {props.status}</h5>
 
+      <div className="aboba123">
       <div className="counter">
         <button className="counterBtn" onClick={decrementCounter}>
           -
@@ -91,6 +91,7 @@ function Ward(props) {
         src={isAddedF ? "/logo/favon.svg" : "/logo/favoff.svg"}
         alt="Add to cart"
       />
+      </div>
     </div>
   );
 }

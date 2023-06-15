@@ -19,6 +19,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<CourierLiked> CourierLiked { get; set; } = null!;
     public DbSet<WardLiked> WardLiked { get; set; } = null!;
     public DbSet<LandLiked> LandLiked { get; set; } = null!;
+    public DbSet<Orders> Orders { get; set; } = null!;
+    
 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

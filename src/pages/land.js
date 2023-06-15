@@ -59,6 +59,7 @@ function Land(props) {
       <h5>Цена: {props.Price} руб</h5>
       <h5>Стиль: {props.Style}</h5>
       <h5>Описание: {props.Description}</h5>
+      <div className="aboba123">
       <div className="counter">
         <button
           className="counterBtn"
@@ -89,6 +90,7 @@ function Land(props) {
         alt="Add to cart"
         disabled={isFavClicked}
       />
+      </div>
     </div>
   );
 }
